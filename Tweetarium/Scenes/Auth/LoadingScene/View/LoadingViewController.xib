@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoadingViewController" customModule="Tweetarium" customModuleProvider="target">
+            <connections>
+                <outlet property="loadIcon" destination="esG-Eo-jjj" id="cFC-iW-oo4"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twitter" translatesAutoresizingMaskIntoConstraints="NO" id="hgI-tx-EyY">
+                    <rect key="frame" x="125" y="352" width="140" height="140"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="hgI-tx-EyY" secondAttribute="height" multiplier="1:1" id="7B7-ZK-nOa"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="load" translatesAutoresizingMaskIntoConstraints="NO" id="esG-Eo-jjj">
+                    <rect key="frame" x="50" y="277" width="290" height="290"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="esG-Eo-jjj" secondAttribute="height" multiplier="1:1" id="ylf-Oi-w5j"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lzv-yB-nBJ">
+                    <rect key="frame" x="97.666666666666686" y="684" width="195" height="44"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" image="twitterButtonIcon" title="Sign in with twitter"/>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="esG-Eo-jjj" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="9Z3-zK-ctm"/>
+                <constraint firstItem="hgI-tx-EyY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="CMg-C2-esO"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="esG-Eo-jjj" secondAttribute="trailing" constant="50" id="F4d-zZ-Rik"/>
+                <constraint firstItem="hgI-tx-EyY" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="SZB-mY-Y14"/>
+                <constraint firstItem="Lzv-yB-nBJ" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.5" id="TJd-oK-sot"/>
+                <constraint firstItem="esG-Eo-jjj" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YoU-Qp-Pax"/>
+                <constraint firstItem="Lzv-yB-nBJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ZHc-fj-MoN"/>
+                <constraint firstItem="hgI-tx-EyY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="125" id="isk-Ml-Chz"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hgI-tx-EyY" secondAttribute="trailing" constant="125" id="u3Z-Jw-kBo"/>
+            </constraints>
+            <point key="canvasLocation" x="113.84615384615384" y="-11.374407582938389"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="load" width="170.66667175292969" height="170.66667175292969"/>
+        <image name="twitter" width="170.66667175292969" height="170.66667175292969"/>
+        <image name="twitterButtonIcon" width="21.333333969116211" height="21.333333969116211"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
