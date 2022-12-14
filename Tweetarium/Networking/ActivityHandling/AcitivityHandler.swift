@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import AuthenticationServices
 
 protocol ActivityHandler: LoadingHandler, MessageHandler {}
+
+protocol AuthenticationHandler: ASWebAuthenticationPresentationContextProviding, ActivityHandler {}
 
 protocol LoadingHandler {
     func initLoader()

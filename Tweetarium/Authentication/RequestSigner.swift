@@ -82,7 +82,7 @@ class OAuthRequestSigner {
     // 5. AUTHORIZATION HEADER
     func buildAuthHeader() -> String {
         let signature = buildSignature()
-        let auth: [String: String] = [
+        var auth: [String: String] = [
             "oauth_consumer_key": clientKey,
             "oauth_signature_method": method,
             "oauth_timestamp": self.timestamp,
@@ -90,6 +90,11 @@ class OAuthRequestSigner {
             "oauth_version": oauthVersion,
             "oauth_signature": signature
         ]
+        
+        if let oauthToken = oauthToken {
+            auth["oauth_token"] = oauthToken
+        }
+        
         var authHeader = auth.map({ "\($0.key.percentEncoded())=\($0.value.percentEncoded())" }).sorted().joined(separator: ",")
         authHeader = "OAuth \(authHeader)"
         return authHeader

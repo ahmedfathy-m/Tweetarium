@@ -8,6 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		08C207743D3C1ADB69F01A5A /* Pods_Tweetarium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82167086FE8B3992826B2C55 /* Pods_Tweetarium.framework */; };
+		7421BCD82948EF6A00523938 /* AFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7421BCD72948EF6A00523938 /* AFViewController.swift */; };
+		7421BCDE2948F08000523938 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7421BCDC2948F08000523938 /* TimelineViewController.swift */; };
+		7421BCDF2948F08000523938 /* TimelineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7421BCDD2948F08000523938 /* TimelineViewController.xib */; };
+		7421BCE42948F76100523938 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7421BCE22948F76100523938 /* ProfileViewController.swift */; };
+		7421BCE52948F76100523938 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7421BCE32948F76100523938 /* ProfileViewController.xib */; };
+		7421BCE82948F77000523938 /* MentionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7421BCE62948F77000523938 /* MentionsViewController.swift */; };
+		7421BCE92948F77000523938 /* MentionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7421BCE72948F77000523938 /* MentionsViewController.xib */; };
+		7421BCED2948F98E00523938 /* TweetTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7421BCEC2948F98E00523938 /* TweetTableCell.swift */; };
+		7421BCF029492EC800523938 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7421BCEF29492EC800523938 /* Timeline.swift */; };
+		7421BCF229492EF600523938 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7421BCF129492EF600523938 /* Main.swift */; };
+		7421BCF729492FC800523938 /* TimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7421BCF629492FC800523938 /* TimelineViewModel.swift */; };
+		7421BCF9294931B300523938 /* TweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7421BCF8294931B300523938 /* TweetViewModel.swift */; };
 		743FD2CC293222A800DFC4DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743FD2CB293222A800DFC4DD /* AppDelegate.swift */; };
 		743FD2CE293222A800DFC4DD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743FD2CD293222A800DFC4DD /* SceneDelegate.swift */; };
 		743FD2D0293222A800DFC4DD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743FD2CF293222A800DFC4DD /* ViewController.swift */; };
@@ -39,6 +51,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7421BCD72948EF6A00523938 /* AFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFViewController.swift; sourceTree = "<group>"; };
+		7421BCDC2948F08000523938 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
+		7421BCDD2948F08000523938 /* TimelineViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineViewController.xib; sourceTree = "<group>"; };
+		7421BCE22948F76100523938 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		7421BCE32948F76100523938 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		7421BCE62948F77000523938 /* MentionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentionsViewController.swift; sourceTree = "<group>"; };
+		7421BCE72948F77000523938 /* MentionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MentionsViewController.xib; sourceTree = "<group>"; };
+		7421BCEC2948F98E00523938 /* TweetTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TweetTableCell.swift; path = ../../../../../../../TweetTableCell.swift; sourceTree = "<group>"; };
+		7421BCEF29492EC800523938 /* Timeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeline.swift; sourceTree = "<group>"; };
+		7421BCF129492EF600523938 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+		7421BCF629492FC800523938 /* TimelineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewModel.swift; sourceTree = "<group>"; };
+		7421BCF8294931B300523938 /* TweetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetViewModel.swift; sourceTree = "<group>"; };
 		743FD2C8293222A800DFC4DD /* Tweetarium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tweetarium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		743FD2CB293222A800DFC4DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		743FD2CD293222A800DFC4DD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +116,110 @@
 				82167086FE8B3992826B2C55 /* Pods_Tweetarium.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7421BCD62948EF4F00523938 /* AFViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7421BCD72948EF6A00523938 /* AFViewController.swift */,
+			);
+			path = AFViewController;
+			sourceTree = "<group>";
+		};
+		7421BCD92948F06900523938 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				7421BCEA2948F97A00523938 /* Components */,
+				7421BCDA2948F06E00523938 /* Root */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		7421BCDA2948F06E00523938 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				7421BCE12948F73900523938 /* Mentions */,
+				7421BCE02948F73400523938 /* Profile */,
+				7421BCDB2948F07200523938 /* Timeline */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		7421BCDB2948F07200523938 /* Timeline */ = {
+			isa = PBXGroup;
+			children = (
+				7421BCF329492FA400523938 /* ViewModel */,
+				7421BCF429492FAC00523938 /* Controller */,
+				7421BCF529492FB100523938 /* View */,
+			);
+			path = Timeline;
+			sourceTree = "<group>";
+		};
+		7421BCE02948F73400523938 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				7421BCE22948F76100523938 /* ProfileViewController.swift */,
+				7421BCE32948F76100523938 /* ProfileViewController.xib */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		7421BCE12948F73900523938 /* Mentions */ = {
+			isa = PBXGroup;
+			children = (
+				7421BCE62948F77000523938 /* MentionsViewController.swift */,
+				7421BCE72948F77000523938 /* MentionsViewController.xib */,
+			);
+			path = Mentions;
+			sourceTree = "<group>";
+		};
+		7421BCEA2948F97A00523938 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				7421BCEB2948F98000523938 /* TweetTableCell */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		7421BCEB2948F98000523938 /* TweetTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				7421BCEC2948F98E00523938 /* TweetTableCell.swift */,
+			);
+			path = TweetTableCell;
+			sourceTree = "<group>";
+		};
+		7421BCEE29492EBD00523938 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7421BCEF29492EC800523938 /* Timeline.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7421BCF329492FA400523938 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7421BCF629492FC800523938 /* TimelineViewModel.swift */,
+				7421BCF8294931B300523938 /* TweetViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7421BCF429492FAC00523938 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7421BCDC2948F08000523938 /* TimelineViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7421BCF529492FB100523938 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7421BCDD2948F08000523938 /* TimelineViewController.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		743FD2BF293222A800DFC4DD = {
@@ -148,8 +276,8 @@
 		743FD2EC29322CE100DFC4DD /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				7421BCD92948F06900523938 /* Main */,
 				743FD2ED29322D1600DFC4DD /* Auth */,
-				743FD2EE29322D1B00DFC4DD /* Main */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -157,215 +285,25 @@
 		743FD2ED29322D1600DFC4DD /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				743FD2F029322D3200DFC4DD /* LoginScene */,
-				743FD2EF29322D2900DFC4DD /* LoadingScene */,
+				743FD2EF29322D2900DFC4DD /* IntroScene */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
 		};
-		743FD2EE29322D1B00DFC4DD /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				743FD2FE2932319B00DFC4DD /* SharedComponents */,
-				743FD2F529322DDC00DFC4DD /* BranchScenes */,
-				743FD2F129322D4400DFC4DD /* RootScenes */,
-			);
-			path = Main;
-			sourceTree = "<group>";
-		};
-		743FD2EF29322D2900DFC4DD /* LoadingScene */ = {
+		743FD2EF29322D2900DFC4DD /* IntroScene */ = {
 			isa = PBXGroup;
 			children = (
 				74A605B12932787600286736 /* ViewModel */,
 				74A605B02932786E00286736 /* Controller */,
 				743FD330293277E200DFC4DD /* View */,
 			);
-			path = LoadingScene;
-			sourceTree = "<group>";
-		};
-		743FD2F029322D3200DFC4DD /* LoginScene */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LoginScene;
-			sourceTree = "<group>";
-		};
-		743FD2F129322D4400DFC4DD /* RootScenes */ = {
-			isa = PBXGroup;
-			children = (
-				743FD2F429322D7B00DFC4DD /* ProfileScene */,
-				743FD2F329322D7300DFC4DD /* MentionsScene */,
-				743FD2F229322D6000DFC4DD /* TimelineScene */,
-			);
-			path = RootScenes;
-			sourceTree = "<group>";
-		};
-		743FD2F229322D6000DFC4DD /* TimelineScene */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TimelineScene;
-			sourceTree = "<group>";
-		};
-		743FD2F329322D7300DFC4DD /* MentionsScene */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = MentionsScene;
-			sourceTree = "<group>";
-		};
-		743FD2F429322D7B00DFC4DD /* ProfileScene */ = {
-			isa = PBXGroup;
-			children = (
-				743FD2FD2932318E00DFC4DD /* Components */,
-			);
-			path = ProfileScene;
-			sourceTree = "<group>";
-		};
-		743FD2F529322DDC00DFC4DD /* BranchScenes */ = {
-			isa = PBXGroup;
-			children = (
-				743FD30A293234C000DFC4DD /* CreateTweetScene */,
-				743FD2FB29322EE700DFC4DD /* TweetRetweetsListScene */,
-				743FD2FA29322EB800DFC4DD /* TweetLikesListScene */,
-				743FD2F929322EB200DFC4DD /* SingleTweetScene */,
-				743FD2F829322E1100DFC4DD /* SearchTweetsScenes */,
-				743FD2F729322DFF00DFC4DD /* ProfileEditScene */,
-				743FD2F629322DF400DFC4DD /* SettingsScene */,
-			);
-			path = BranchScenes;
-			sourceTree = "<group>";
-		};
-		743FD2F629322DF400DFC4DD /* SettingsScene */ = {
-			isa = PBXGroup;
-			children = (
-				743FD301293232C200DFC4DD /* Components */,
-			);
-			path = SettingsScene;
-			sourceTree = "<group>";
-		};
-		743FD2F729322DFF00DFC4DD /* ProfileEditScene */ = {
-			isa = PBXGroup;
-			children = (
-				743FD304293232F300DFC4DD /* Components */,
-			);
-			path = ProfileEditScene;
-			sourceTree = "<group>";
-		};
-		743FD2F829322E1100DFC4DD /* SearchTweetsScenes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SearchTweetsScenes;
-			sourceTree = "<group>";
-		};
-		743FD2F929322EB200DFC4DD /* SingleTweetScene */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SingleTweetScene;
-			sourceTree = "<group>";
-		};
-		743FD2FA29322EB800DFC4DD /* TweetLikesListScene */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TweetLikesListScene;
-			sourceTree = "<group>";
-		};
-		743FD2FB29322EE700DFC4DD /* TweetRetweetsListScene */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TweetRetweetsListScene;
-			sourceTree = "<group>";
-		};
-		743FD2FD2932318E00DFC4DD /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				743FD3002932321400DFC4DD /* ProfileTableHeader */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		743FD2FE2932319B00DFC4DD /* SharedComponents */ = {
-			isa = PBXGroup;
-			children = (
-				743FD3092932341000DFC4DD /* TwitterUserCell */,
-				743FD2FF293231A900DFC4DD /* TweetTableCell */,
-			);
-			path = SharedComponents;
-			sourceTree = "<group>";
-		};
-		743FD2FF293231A900DFC4DD /* TweetTableCell */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TweetTableCell;
-			sourceTree = "<group>";
-		};
-		743FD3002932321400DFC4DD /* ProfileTableHeader */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ProfileTableHeader;
-			sourceTree = "<group>";
-		};
-		743FD301293232C200DFC4DD /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				743FD302293232C700DFC4DD /* SettingsCell */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		743FD302293232C700DFC4DD /* SettingsCell */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SettingsCell;
-			sourceTree = "<group>";
-		};
-		743FD304293232F300DFC4DD /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				743FD3072932334600DFC4DD /* HeaderPhotoEditCell */,
-				743FD3062932330100DFC4DD /* FormEditCell */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		743FD3062932330100DFC4DD /* FormEditCell */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = FormEditCell;
-			sourceTree = "<group>";
-		};
-		743FD3072932334600DFC4DD /* HeaderPhotoEditCell */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = HeaderPhotoEditCell;
-			sourceTree = "<group>";
-		};
-		743FD3092932341000DFC4DD /* TwitterUserCell */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TwitterUserCell;
-			sourceTree = "<group>";
-		};
-		743FD30A293234C000DFC4DD /* CreateTweetScene */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CreateTweetScene;
+			path = IntroScene;
 			sourceTree = "<group>";
 		};
 		743FD30F2932472B00DFC4DD /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				7421BCD62948EF4F00523938 /* AFViewController */,
 				743FD3102932473B00DFC4DD /* LoadingIndicator */,
 			);
 			path = CustomViews;
@@ -382,6 +320,7 @@
 		743FD3132932703000DFC4DD /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				7421BCEE29492EBD00523938 /* Models */,
 				8C2D7A3D2948965A006D1CEA /* ActivityHandling */,
 				8C2D7A3729487FFC006D1CEA /* URLRequest */,
 				743FD32A2932743300DFC4DD /* Service */,
@@ -439,6 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				743FD32E2932750D00DFC4DD /* OAuth.swift */,
+				7421BCF129492EF600523938 /* Main.swift */,
 			);
 			path = RouterEnums;
 			sourceTree = "<group>";
@@ -570,7 +510,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				74A605AF2932786A00286736 /* LoadingViewController.xib in Resources */,
+				7421BCE92948F77000523938 /* MentionsViewController.xib in Resources */,
+				7421BCDF2948F08000523938 /* TimelineViewController.xib in Resources */,
 				743FD2DB293222A900DFC4DD /* LaunchScreen.storyboard in Resources */,
+				7421BCE52948F76100523938 /* ProfileViewController.xib in Resources */,
 				743FD2D8293222A900DFC4DD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -624,12 +567,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7421BCED2948F98E00523938 /* TweetTableCell.swift in Sources */,
 				74A605B4293278D900286736 /* Dict<String>.swift in Sources */,
 				8C2D7A3C29488787006D1CEA /* Defaults.swift in Sources */,
+				7421BCF029492EC800523938 /* Timeline.swift in Sources */,
 				743FD2D0293222A800DFC4DD /* ViewController.swift in Sources */,
+				7421BCE82948F77000523938 /* MentionsViewController.swift in Sources */,
 				74A605B829327E6A00286736 /* String.swift in Sources */,
 				743FD2E7293226F000DFC4DD /* MainCoordinator.swift in Sources */,
+				7421BCF9294931B300523938 /* TweetViewModel.swift in Sources */,
+				7421BCDE2948F08000523938 /* TimelineViewController.swift in Sources */,
 				743FD3272932741200DFC4DD /* ServiceMonitor.swift in Sources */,
+				7421BCF229492EF600523938 /* Main.swift in Sources */,
 				743FD3122932486900DFC4DD /* LoadingIndicator.swift in Sources */,
 				743FD3172932705200DFC4DD /* SharedDefaults.swift in Sources */,
 				74A605B62932795100286736 /* RequestSigner.swift in Sources */,
@@ -641,10 +590,13 @@
 				743FD2D6293222A800DFC4DD /* Tweetarium.xcdatamodeld in Sources */,
 				743FD325293273FD00DFC4DD /* ServiceErrors.swift in Sources */,
 				743FD321293273BF00DFC4DD /* NetworkingRoute.swift in Sources */,
+				7421BCE42948F76100523938 /* ProfileViewController.swift in Sources */,
 				743FD323293273DA00DFC4DD /* Service.swift in Sources */,
 				743FD30D293236DA00DFC4DD /* LoadingViewController.swift in Sources */,
 				8C2D7A3929488014006D1CEA /* URLRequest.swift in Sources */,
 				743FD32F2932750D00DFC4DD /* OAuth.swift in Sources */,
+				7421BCD82948EF6A00523938 /* AFViewController.swift in Sources */,
+				7421BCF729492FC800523938 /* TimelineViewModel.swift in Sources */,
 				743FD2CE293222A800DFC4DD /* SceneDelegate.swift in Sources */,
 				743FD2EB2932282E00DFC4DD /* AuthCoordinator.swift in Sources */,
 				743FD2E9293227E900DFC4DD /* AppCoordinator.swift in Sources */,
@@ -795,7 +747,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -824,7 +776,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

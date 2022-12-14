@@ -21,6 +21,13 @@ class AuthCoordinator: Coordinator {
     
     func start() {
         let loadingVC = LoadingViewController()
+        loadingVC.coordinator = self
         navigationController.setViewControllers([loadingVC], animated: true)
+    }
+    
+    func didSuccessfullyLogin() {
+        if let main = self.parentCoordinator?.childCoordinators["Main"] {
+            main.start()
+        }
     }
 }

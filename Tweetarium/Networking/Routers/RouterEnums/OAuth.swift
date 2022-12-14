@@ -43,12 +43,15 @@ extension OAuth: NetworkingRoute {
     
     var defaultQueryParameters: [String : String] {
         switch self {
-        case .requestToken(let callback):
+        case .requestToken:
             return [:]
         case .oauthToken(let token):
             return ["oauth_token": token]
         case .accessToken:
-            return [:]
+            return [
+                "oauth_token": Defaults.accessToken.value as! String,
+                "oauth_verifier": Defaults.oauthVerifier.value as! String
+            ]
         case .testRoute:
             return [
                 "status":"Hello Ladies + Gentlemen, a signed OAuth request!",

@@ -10,6 +10,8 @@ import Foundation
 enum Defaults: String, CaseIterable {
     case accessToken
     case accessTokenSecret
+    case oauthVerifier
+    case userID
 }
 
 extension Defaults {
@@ -18,7 +20,7 @@ extension Defaults {
         set { UserDefaults.standard.set(newValue, forKey: self.rawValue) }
     }
     
-    func setValue(_ value: Any?) {
+    func setValue<T>(_ value: T?) {
         UserDefaults.standard.set(value, forKey: self.rawValue)
     }
 }
