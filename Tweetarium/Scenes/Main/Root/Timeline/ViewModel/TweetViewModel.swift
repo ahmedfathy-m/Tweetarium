@@ -6,85 +6,147 @@
 //
 
 import Foundation
+import UIKit
 
 struct TweetViewModel {
-    let model: Tweet
+    let model: TweetObject
 }
 
 extension TweetViewModel {
+    
     var displayName: String {
-        return model.user.name
+        displayTweet.user.name
     }
     
     var displayHandle: String {
-        return model.user.screenName
+        "@\(displayTweet.user.screenName)"
     }
     
-    var tweetText: String {
-        return model.fullText
+    fileprivate var displayTweet: TweetObject {
+        let value = isRetweet ? model.retweetedTweet! : model
+        return value
     }
     
-    var numberOfLikes: Int {
-        return model.favoriteCount
+    fileprivate var entities: Entity {
+        return displayTweet.entities
     }
     
-    var numberOfRetweets: Int {
-        return model.retweetCount
+    fileprivate var tweetText: String {
+        if let displayText = displayTweet.text { return displayText }
+        else if let displayText = displayTweet.fullText { return displayText }
+        else { return String() }
+    }
+    
+    var displayText: NSAttributedString {
+        var value = tweetText
+
+        entities.urls?.forEach { urlObject in
+            if urlObject.displayURL.starts(with: "twitter.com") {
+                value = value.replacingOccurrences(of: urlObject.url, with: "")
+            } else {
+                value = value.replacingOccurrences(of: urlObject.url, with: urlObject.displayURL)
+            }
+        }
+        
+        entities.media?.forEach { mediaObject in
+            value = value.replacingOccurrences(of: mediaObject.url, with: "")
+        }
+        
+        let mutableAttributedString = NSMutableAttributedString(string: value)
+        let updatedRange = NSMakeRange(0, value.count)
+        let hashtagPattern = "#[A-Za-z0-9]*|@[A-Za-z0-9]*"
+        let hashtagRegex = try? NSRegularExpression(pattern: hashtagPattern, options: [])
+        let matches = hashtagRegex?.matches(in: value, options: [], range: updatedRange)
+        
+        matches?.reversed().forEach { match in
+            mutableAttributedString.addAttribute(.foregroundColor, value: UIColor.systemBlue, range: match.range)
+        }
+        
+        return NSAttributedString(attributedString: mutableAttributedString)
+    }
+    
+    var numberOfLikes: String {
+        displayTweet.numberOfLikes?.formattedInKFormat ?? ""
+    }
+    
+    var isLikedByUser: Bool {
+        displayTweet.isLikedByAuthenticatedUser ?? false
+    }
+    
+    var numberOfRetweets: String {
+        displayTweet.numberOfRetweets.formattedInKFormat
+    }
+    
+    var isRetweetedByUser: Bool {
+        displayTweet.isRetweetedByAuthenticatedUser
     }
     
     var isRightToLeft: Bool {
-        return model.lang == .ar
+        displayTweet.lang == .Arabic
     }
     
-    var imageURL: String {
-        return model.user.profileImageURLHTTPS
+    var imageURL: URL? {
+        displayTweet.user.profileImage
+    }
+    
+    var isRetweet: Bool {
+        return model.retweetedTweet != nil
+    }
+    
+    var retweetedBy: String? {
+        guard isRetweet else { return nil }
+        return "Retweeted By \(model.user.name)"
+    }
+    
+    var mediaEntities: [URL?] {
+        let media = isRetweet ? model.retweetedTweet!.entities.media : model.extendedEntities?.media
+        let urls = media?.map({ URL(string: $0.mediaURLHTTPS) })
+        return urls ?? [URL]()
     }
     
     var postedSince: String {
-        let dateComponents = model.createdAt.components(separatedBy: " ")
-        let weekday = dateComponents[0]
-        let month = dateComponents[1]
-        let day = dateComponents[2]
-        let time = dateComponents[3]
-        let year = dateComponents[5]
-        print(#function)
-        print(dateComponents)
-        
-        let monthNumber = monthFormatter(monthName: month)
-        print(monthNumber)
-        
-        let isoDate = "\(year)-\(monthNumber)-\(day) \(time)"
-        print(isoDate)
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        formatter.timeZone = .gmt
-        let date = formatter.date(from: isoDate)
-        print(date)
-        let secondsPast = abs(date!.timeIntervalSinceNow)
-        var displayTime = ""
-        
-        if secondsPast < 60 {
-            displayTime = String(format: "%.0fs", secondsPast)
-        } else if secondsPast > 60 && secondsPast < 3600 {
-            displayTime = String(format: "%.0fm", secondsPast / 60.0)
-        } else if secondsPast > 3600 && secondsPast < 86400 {
-            displayTime = String(format: "%.0fh", secondsPast / 3600)
-        } else {
-            displayTime = String(format: "%.0fd", secondsPast / 86400)
-        }
-        
-        return displayTime
+        let date = displayTweet.createdAt
+        return date?.calculateDuration() ?? ""
     }
     
-    fileprivate func monthFormatter(monthName: String) -> String {
-        let df = DateFormatter()
-        df.locale = Locale(identifier: "en_US_POSIX")
-        df.dateFormat = "LLL"  // if you need 3 letter month just use "LLL"
-        if let date = df.date(from: monthName) {
-            let month = Calendar.current.component(.month, from: date)
-            return month > 9 ? "\(month)" : "0\(month)"
+    // MARK: - Quoted Status
+    
+    var isQuoted: Bool {
+        displayTweet.isQuotingAnotherTweet
+    }
+    
+    var textOfQuotedStatus: String? {
+        if let text = displayTweet.quotedTweet?.text {
+            return text
+        } else {
+            return displayTweet.quotedTweet?.fullText
         }
-        return "00"
+    }
+    
+    var nameOfQuotedStatusAuthor: String? {
+        displayTweet.quotedTweet?.user.name
+    }
+    
+    var handleOfQuotedStatusAuthor: String? {
+        guard let value = displayTweet.quotedTweet?.user.screenName else { return nil }
+        return "@\(value)"
+    }
+    
+    var avatarOfQuotedStatusAuthor: URL? {
+        displayTweet.quotedTweet?.user.profileImage
+    }
+    
+    var isQuotedStatusRTL: Bool {
+        displayTweet.quotedTweet?.lang == .Arabic
+    }
+    
+    var quotedStatusHasMedia: Bool {
+        guard firstMediaEntityOfQuotedStatus != nil else { return false }
+        return true
+    }
+    
+    var firstMediaEntityOfQuotedStatus: URL? {
+        guard let value = displayTweet.quotedTweet?.entities.media?[0].mediaURLHTTPS else { return nil }
+        return URL(string: value)
     }
 }

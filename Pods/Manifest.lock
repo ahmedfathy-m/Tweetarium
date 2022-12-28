@@ -1,16 +1,20 @@
 PODS:
   - CryptoSwift (1.6.0)
+  - Kingfisher (7.4.1)
 
 DEPENDENCIES:
   - CryptoSwift
+  - Kingfisher
 
 SPEC REPOS:
   trunk:
     - CryptoSwift
+    - Kingfisher
 
 SPEC CHECKSUMS:
   CryptoSwift: 562f8eceb40e80796fffc668b0cad9313284cfa6
+  Kingfisher: cd762a593a61b2fbecf7645c00f9a801a3ebfc9c
 
-PODFILE CHECKSUM: 90af88ff8dd0c7f7bf343afdc4b25592e6d8a5be
+PODFILE CHECKSUM: 9cd5829bf64dfda79dd66e9b963b84c10df936aa
 
 COCOAPODS: 1.11.2

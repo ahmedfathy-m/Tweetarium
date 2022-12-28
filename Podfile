@@ -7,5 +7,6 @@ target 'Tweetarium' do
 
   # Pods for Tweetarium
 pod 'CryptoSwift'
+pod 'Kingfisher'
 
 end

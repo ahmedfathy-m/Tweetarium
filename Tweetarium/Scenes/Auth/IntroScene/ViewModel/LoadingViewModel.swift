@@ -33,7 +33,7 @@ class LoadingViewModel {
     }
     
     func clearTemporaryTokens() {
-        var value: String? = nil
+        let value: String? = nil
         Defaults.accessToken.setValue(value)
         Defaults.accessTokenSecret.setValue(value)
     }
@@ -57,6 +57,7 @@ class LoadingViewModel {
                     Defaults.userID.setValue(responseComponents[2])
                     let screenName = responseComponents[3]
                     print("Welcome, \(screenName)")
+                    DispatchQueue.main.async { self.onSuccessfulLogin(screenName) }
                 }
             }
         }

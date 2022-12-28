@@ -1,24 +1,24 @@
 //
-//  Main.swift
+//  Users.swift
 //  Tweetarium
 //
-//  Created by Ahmed Fathy on 14/12/2022.
+//  Created by Ahmed Fathy on 27/12/2022.
 //
 
 import Foundation
 
-enum Main {
+enum Users {
     // Router Constants
     var baseURL: String { return "https://api.twitter.com/1.1" }
     
     // Router Endpoints
-    case home
+    case show(_ userID: Int)
 }
 
-extension Main: NetworkingRoute {
+extension Users: NetworkingRoute {
     var targetURL: String {
         switch self {
-        case .home: return "\(baseURL)/statuses/home_timeline.json"
+        case .show: return "\(baseURL)/users/show.json"
         }
     }
     
@@ -32,9 +32,8 @@ extension Main: NetworkingRoute {
     
     var defaultQueryParameters: [String : String] {
         switch self {
-            case .home: return [
-                "tweet_mode" : "extended"
-            ]
+        case .show(let id):
+            return ["user_id":"\(id)"]
         }
     }
     
@@ -45,6 +44,4 @@ extension Main: NetworkingRoute {
     var shouldSignRequest: Bool {
         return true
     }
-    
-    
 }

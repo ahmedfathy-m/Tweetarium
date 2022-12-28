@@ -52,7 +52,11 @@ class NetworkService {
         do {
             decodedData = try decodeData(data)
         } catch {
-            handler?.present(error.localizedDescription, type: .error)
+            let error = error as? DecodingError
+            print(error.debugDescription)
+            print(error?.recoverySuggestion)
+            print(error?.failureReason)
+            handler?.present(error?.localizedDescription ?? "", type: .error)
         }
         return decodedData
     }
@@ -112,7 +116,9 @@ class NetworkService {
     
     // MARK: - HELPER FUNCTIONS
     private func validateResponse(_ response: URLResponse) -> ServiceError? {
-        let statusCode = (response as! HTTPURLResponse).statusCode
+        guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
+            return ServiceError.noInternet
+        }
         switch statusCode {
         case 400...499: return ServiceError.clientError(statusCode)
         case 500...599: return ServiceError.serverError(statusCode)

@@ -8,41 +8,58 @@
 import UIKit
 
 class AFViewController: UIViewController {
-
-    @IBInspectable var tabViewImage: UIImage {
-        get { self.tabBarItem.image ?? UIImage() }
-        set { self.tabBarItem.image = newValue }
-    }
     
-    @IBInspectable var selectedTabViewImage: UIImage {
-        get { self.tabBarItem.selectedImage ?? UIImage() }
-        set { self.tabBarItem.selectedImage = newValue }
-    }
+    fileprivate lazy var indicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
 
-    @IBInspectable var tabViewTitle: String {
-        get { self.tabBarItem.title ?? String() }
-        set { self.tabBarItem.title = newValue }
-    }
+    var activityLoader: AFLoadingIndicator = AFLoadingIndicator(frame: CGRect(origin: .zero, size: CGSize(width: 100, height: 100)))
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(indicator)
+        NSLayoutConstraint.activate([
+            indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            indicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
 }
 
 extension AFViewController: ActivityHandler {
     func initLoader() {
+        DispatchQueue.main.async {
+            self.view.bringSubviewToFront(self.indicator)
+            self.indicator.isHidden = false
+            self.indicator.startAnimating()
+        }
         print("Start")
     }
     
     func deinitLoader() {
-        print("Ended")
+        DispatchQueue.main.async {
+            self.indicator.stopAnimating()
+        }
     }
     
     func present(_ error: String, retry: () async -> ()) {
+        let alert = UIAlertController(title: "ERROR", message: error, preferredStyle: .actionSheet)
+        let action = UIAlertAction(title: "Okay", style: .default)
+        alert.addAction(action)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
         print(error)
     }
     
     func present(_ message: String, type: MessageType) {
+        let alert = UIAlertController(title: "ERROR", message: message, preferredStyle: .actionSheet)
+        let action = UIAlertAction(title: "Okay", style: .default)
+        alert.addAction(action)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
         print(message)
     }
     

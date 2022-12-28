@@ -20,16 +20,17 @@ class MainCoordinator: Coordinator {
     var navigationController: UINavigationController
     
     func start() {
-        let tabView = UITabBarController()
-        let tab1 = MentionsViewController()
-        let tab2 = TimelineViewController()
-        let tab3 = ProfileViewController()
-        tab1.view.backgroundColor = .systemBlue
-        tab1.loadView()
-        tab3.view.backgroundColor = .darkGray
-        let views = [tab1, tab2, tab3]
-//        views.forEach({$0.loadView()})
-        tabView.setViewControllers(views, animated: true)
+        let tabView = RootTabbarController()
+        tabView.viewControllers?.forEach { viewController in
+            guard let viewController = viewController as? TimelineViewController else { return }
+            viewController.coordinator = self
+        }
         navigationController.setViewControllers([tabView], animated: true)
+    }
+    
+    func shouldPresentImageView(with url: URL?) {
+        let viewController = ImageViewPopup()
+        viewController.imageURL = url
+        navigationController.present(viewController, animated: true)
     }
 }
