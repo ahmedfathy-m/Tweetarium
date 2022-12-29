@@ -33,6 +33,7 @@ class TweetObjectView: UITableViewCell {
     @IBOutlet weak var pageControlOfTweetGallery: UIPageControl!
     fileprivate var mediaEntities = [URL?]()
     fileprivate var didSelectImage: ((URL?) -> Void)?
+    var tweetID = 0
     
     // MARK: - Component Life Cycle
     override func awakeFromNib() {
@@ -102,6 +103,7 @@ class TweetObjectView: UITableViewCell {
     
     static func instantiateCell(for tableView: UITableView, at indexPath: IndexPath, source: TweetViewModel, didSelectImage: @escaping (URL?)->Void ) -> TweetObjectView {
         let cell = tableView.dequeueReusableCell(withIdentifier: TweetObjectView.identifier, for: indexPath) as! TweetObjectView
+        cell.tweetID = Int(source.model.id)
         cell.nameOfOriginalAuthor.text = source.displayName
         cell.handleOfOriginalAuthor.text = source.displayHandle
         cell.timeSincePosting.text = "• \(source.postedSince)"
@@ -138,6 +140,32 @@ class TweetObjectView: UITableViewCell {
         return cell
     }
     
+    // MARK: - Networking
+    fileprivate func likeTweet() async {
+        guard let likedTweet: TweetObject = await NetworkService.shared.loadData(from: Actions.like(id: self.tweetID)) else { return }
+        UIView.animate(withDuration: 0.5, delay: 0) {
+            self.likeButton.isSelected = true
+        }
+    }
+    
+    fileprivate func dislike() async {
+        guard let disliked: TweetObject = await NetworkService.shared.loadData(from: Actions.unlike(id: self.tweetID)) else { return }
+        UIView.animate(withDuration: 0.5, delay: 0) {
+            self.likeButton.isSelected = false
+        }
+    }
+    
+    // MARK: - IBActions
+    @IBAction func didPressLike(_ sender: UIButton) {
+        if !sender.isSelected {
+            Task { await likeTweet() }
+        } else {
+            Task { await dislike() }
+        }
+        
+    }
+    
+    // MARK: - Nib
     static private var identifier: String {
         return String(describing: self)
     }

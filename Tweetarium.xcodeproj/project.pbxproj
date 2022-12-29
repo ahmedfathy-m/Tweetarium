@@ -26,7 +26,7 @@
 		743FD2EB2932282E00DFC4DD /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743FD2EA2932282E00DFC4DD /* AuthCoordinator.swift */; };
 		743FD30D293236DA00DFC4DD /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743FD30B293236DA00DFC4DD /* LoadingViewController.swift */; };
 		743FD3122932486900DFC4DD /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743FD3112932486900DFC4DD /* LoadingIndicator.swift */; };
-		743FD3172932705200DFC4DD /* SharedDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743FD3162932705200DFC4DD /* SharedDefaults.swift */; };
+		743FD3172932705200DFC4DD /* Twitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743FD3162932705200DFC4DD /* Twitter.swift */; };
 		743FD3192932706100DFC4DD /* API Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743FD3182932706100DFC4DD /* API Keys.swift */; };
 		743FD31F293273AE00DFC4DD /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743FD31E293273AE00DFC4DD /* HTTPMethod.swift */; };
 		743FD321293273BF00DFC4DD /* NetworkingRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743FD320293273BF00DFC4DD /* NetworkingRoute.swift */; };
@@ -45,6 +45,7 @@
 		8C359647294C9CBB0077154E /* TweetMediaEntityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C359645294C9CBB0077154E /* TweetMediaEntityView.swift */; };
 		8C359648294C9CBB0077154E /* TweetMediaEntityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C359646294C9CBB0077154E /* TweetMediaEntityView.xib */; };
 		8C35964A294CAB070077154E /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C359649294CAB070077154E /* Int.swift */; };
+		8C563C6D295DC6A800540A54 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C563C6C295DC6A700540A54 /* Actions.swift */; };
 		8C5C6839294B5D2600F4C88D /* TweetObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5C6837294B5D2600F4C88D /* TweetObjectView.swift */; };
 		8C5C683A294B5D2600F4C88D /* TweetObjectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C5C6838294B5D2600F4C88D /* TweetObjectView.xib */; };
 		8C766655295AE6220015499B /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C766654295AE6220015499B /* Observable.swift */; };
@@ -94,7 +95,7 @@
 		743FD2EA2932282E00DFC4DD /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		743FD30B293236DA00DFC4DD /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		743FD3112932486900DFC4DD /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
-		743FD3162932705200DFC4DD /* SharedDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedDefaults.swift; sourceTree = "<group>"; };
+		743FD3162932705200DFC4DD /* Twitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Twitter.swift; sourceTree = "<group>"; };
 		743FD3182932706100DFC4DD /* API Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API Keys.swift"; sourceTree = "<group>"; };
 		743FD31E293273AE00DFC4DD /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		743FD320293273BF00DFC4DD /* NetworkingRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingRoute.swift; sourceTree = "<group>"; };
@@ -114,6 +115,7 @@
 		8C359645294C9CBB0077154E /* TweetMediaEntityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetMediaEntityView.swift; sourceTree = "<group>"; };
 		8C359646294C9CBB0077154E /* TweetMediaEntityView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TweetMediaEntityView.xib; sourceTree = "<group>"; };
 		8C359649294CAB070077154E /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
+		8C563C6C295DC6A700540A54 /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		8C5C6837294B5D2600F4C88D /* TweetObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetObjectView.swift; sourceTree = "<group>"; };
 		8C5C6838294B5D2600F4C88D /* TweetObjectView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TweetObjectView.xib; sourceTree = "<group>"; };
 		8C766654295AE6220015499B /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
@@ -368,7 +370,7 @@
 		743FD3152932703E00DFC4DD /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				743FD3162932705200DFC4DD /* SharedDefaults.swift */,
+				743FD3162932705200DFC4DD /* Twitter.swift */,
 				743FD3182932706100DFC4DD /* API Keys.swift */,
 			);
 			path = Constants;
@@ -408,6 +410,7 @@
 				743FD32E2932750D00DFC4DD /* OAuth.swift */,
 				7421BCF129492EF600523938 /* Statuses.swift */,
 				8C766663295B0DE10015499B /* Users.swift */,
+				8C563C6C295DC6A700540A54 /* Actions.swift */,
 			);
 			path = RouterEnums;
 			sourceTree = "<group>";
@@ -698,7 +701,7 @@
 				7421BCF229492EF600523938 /* Statuses.swift in Sources */,
 				743FD3122932486900DFC4DD /* LoadingIndicator.swift in Sources */,
 				8C76667D295C442C0015499B /* UserRetweet.swift in Sources */,
-				743FD3172932705200DFC4DD /* SharedDefaults.swift in Sources */,
+				743FD3172932705200DFC4DD /* Twitter.swift in Sources */,
 				74A605B62932795100286736 /* RequestSigner.swift in Sources */,
 				8C766685295C47890015499B /* URLObject.swift in Sources */,
 				8C76666E295B42CC0015499B /* ImageViewPopup.swift in Sources */,
@@ -719,6 +722,7 @@
 				8C766660295B02470015499B /* TwitterUserHeader.swift in Sources */,
 				743FD323293273DA00DFC4DD /* Service.swift in Sources */,
 				743FD30D293236DA00DFC4DD /* LoadingViewController.swift in Sources */,
+				8C563C6D295DC6A800540A54 /* Actions.swift in Sources */,
 				8C2D7A3929488014006D1CEA /* URLRequest.swift in Sources */,
 				743FD32F2932750D00DFC4DD /* OAuth.swift in Sources */,
 				8C766668295B34BE0015499B /* RootTabbarController.swift in Sources */,

@@ -267,6 +267,9 @@
                                                                 <color key="value" systemColor="systemRedColor"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="didPressLike:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="9N5-p0-rXh"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J61-Hu-8Gj">
                                                         <rect key="frame" x="242.5" y="0.0" width="80.5" height="16"/>
