@@ -52,6 +52,8 @@ extension TweetViewModel {
             value = value.replacingOccurrences(of: mediaObject.url, with: "")
         }
         
+        value = value.replacingOccurrences(of: "&amp;", with: "&")
+        
         let mutableAttributedString = NSMutableAttributedString(string: value)
         let updatedRange = NSMakeRange(0, value.count)
         let hashtagPattern = "#[A-Za-z0-9]*|@[A-Za-z0-9]*"

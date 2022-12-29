@@ -90,7 +90,10 @@ final class TweetObject: Codable {
     init(from decoder: Decoder) throws {
         // MARK: - Date Decoding
         let dateOfCreateion = try decoder.container(keyedBy: CodingKeys.self).decode(String.self, forKey: .createdAt)
+        print(#file)
+        print(dateOfCreateion)
         createdAt = Date.format(dateOfCreateion)
+        print(createdAt)
         
         // MARK: - Tweet Content Decoding
         text = try decoder.container(keyedBy: CodingKeys.self).decodeIfPresent(String.self, forKey: .text)

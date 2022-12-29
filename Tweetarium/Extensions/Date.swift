@@ -10,7 +10,7 @@ import Foundation
 extension Date {
     static func format(_ dateString: String) -> Date? {
         let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+//        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         dateFormatter.dateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
         let date = dateFormatter.date(from: dateString)
         return date
