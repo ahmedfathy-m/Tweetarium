@@ -9,6 +9,9 @@ import UIKit
 import Kingfisher
 
 class TweetObjectView: UITableViewCell {
+    // MARK: - TweetObjectDelegate
+    weak var delegate: TweetObjectDelegate?
+    
     // MARK: - IBOutlets
     @IBOutlet weak var nameOfRetweetingUser: UILabel!
     @IBOutlet weak var nameOfOriginalAuthor: UILabel!
@@ -31,8 +34,7 @@ class TweetObjectView: UITableViewCell {
     @IBOutlet weak var enclosingViewOfPageControl: UIView!
     @IBOutlet weak var enclosingViewOfTweetGallery:UIView!
     @IBOutlet weak var pageControlOfTweetGallery: UIPageControl!
-    fileprivate var mediaEntities = [URL?]()
-    fileprivate var didSelectImage: ((URL?) -> Void)?
+    var mediaEntities = [URL?]()
     var tweetID = 0
     
     // MARK: - Component Life Cycle
@@ -90,6 +92,7 @@ class TweetObjectView: UITableViewCell {
             vibrancyView.bottomAnchor.constraint(equalTo: blurView.contentView.bottomAnchor)
         ])
         
+        self.configureUIMenu()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -101,7 +104,7 @@ class TweetObjectView: UITableViewCell {
         tableView.register(TweetObjectView.nib(), forCellReuseIdentifier: TweetObjectView.identifier)
     }
     
-    static func instantiateCell(for tableView: UITableView, at indexPath: IndexPath, source: TweetViewModel, didSelectImage: @escaping (URL?)->Void ) -> TweetObjectView {
+    static func instantiateCell(for tableView: UITableView, at indexPath: IndexPath, source: TweetViewModel) -> TweetObjectView {
         let cell = tableView.dequeueReusableCell(withIdentifier: TweetObjectView.identifier, for: indexPath) as! TweetObjectView
         cell.tweetID = Int(source.model.id)
         cell.nameOfOriginalAuthor.text = source.displayName
@@ -136,35 +139,48 @@ class TweetObjectView: UITableViewCell {
         cell.avatarOfQuotedStatusAuthor.kf.setImage(with: source.avatarOfQuotedStatusAuthor)
         cell.mediaEntityOfQuotedStatus.isHidden = !source.quotedStatusHasMedia
         cell.mediaEntityOfQuotedStatus.kf.setImage(with: source.firstMediaEntityOfQuotedStatus)
-        cell.didSelectImage = didSelectImage
         return cell
     }
     
-    // MARK: - Networking
-    fileprivate func likeTweet() async {
-        guard let likedTweet: TweetObject = await NetworkService.shared.loadData(from: Actions.like(id: self.tweetID)) else { return }
-        UIView.animate(withDuration: 0.5, delay: 0) {
-            self.likeButton.isSelected = true
+    func configureUIMenu() {
+        retweetButton.showsMenuAsPrimaryAction = true
+        let retweet = UIAction(title: "Retweet", image: UIImage(systemName: "arrow.2.squarepath")) { action in
+            self.didPressRetweet()
         }
+        let quote = UIAction(title: "Quote Retweet", image: UIImage(systemName: "pencil")) { _ in
+            self.didPressQuote()
+        }
+        retweetButton.menu = UIMenu(title: "Retweet", children: [retweet, quote])
     }
     
-    fileprivate func dislike() async {
-        guard let disliked: TweetObject = await NetworkService.shared.loadData(from: Actions.unlike(id: self.tweetID)) else { return }
-        UIView.animate(withDuration: 0.5, delay: 0) {
-            self.likeButton.isSelected = false
-        }
-    }
-    
-    // MARK: - IBActions
+    // MARK: - Actions
     @IBAction func didPressLike(_ sender: UIButton) {
-        if !sender.isSelected {
-            Task { await likeTweet() }
-        } else {
-            Task { await dislike() }
+        Task {
+            guard let updatedCount = await delegate?.didPressLike(at: Int64(self.tweetID), isAlreadyLiked: sender.isSelected) else { return }
+            UIView.transition(with: sender, duration: 0.25, options: .transitionCrossDissolve) {
+                sender.setTitle(updatedCount, for: .normal)
+                sender.isSelected.toggle()
+            }
         }
-        
     }
     
+    func didPressRetweet() {
+        Task {
+            guard let updatedCount = await delegate?.didPressRetweetStatus(at: Int64(self.tweetID), isAlreadyRetweeted: retweetButton.isSelected) else { return }
+            UIView.transition(with: retweetButton, duration: 0.25, options: .transitionCrossDissolve) {
+                self.retweetButton.setTitle(updatedCount, for: .normal)
+                self.retweetButton.isSelected.toggle()
+            }
+        }
+    }
+    
+    func didPressQuote() {
+        delegate?.didPressQuoteRetweet(at: Int64(self.tweetID))
+    }
+    
+    @IBAction func didPressReply(_ sender: UIButton) {
+        delegate?.didPressReplyToTweet(to: Int64(self.tweetID))
+    }
     // MARK: - Nib
     static private var identifier: String {
         return String(describing: self)
@@ -172,47 +188,5 @@ class TweetObjectView: UITableViewCell {
     
     static private func nib() -> UINib {
         return UINib(nibName: String(describing: self), bundle: .main)
-    }
-}
-
-extension TweetObjectView: UICollectionViewDataSource, UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return mediaEntities.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let mediaEntity = self.mediaEntities[indexPath.item]
-        let cell = TweetMediaEntityView.instantiateCell(mediaEntity: mediaEntity, for: tweetMediaGallery, at: indexPath)
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedIndex = pageControlOfTweetGallery.currentPage
-        didSelectImage?(mediaEntities[selectedIndex]?.absoluteURL)
-        print(mediaEntities[selectedIndex]?.absoluteURL)
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        self.pageControlOfTweetGallery.currentPage = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
-    }
-    
-}
-
-extension TweetObjectView: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let length = collectionView.frame.width
-        return CGSize(width: length, height: length)
-    }
-}
-
-extension TweetObjectView: UITextViewDelegate {
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        print(characterRange)
-        print(interaction.rawValue)
-        return true
-    }
-    
-    func textView(_ textView: UITextView, shouldInteractWith textAttachment: NSTextAttachment, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        return false
     }
 }

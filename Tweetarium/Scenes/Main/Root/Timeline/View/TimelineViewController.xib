@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,6 +17,7 @@
                 <userDefinedRuntimeAttribute type="image" keyPath="selectedTabViewImage" value="house.fill" catalog="system"/>
             </userDefinedRuntimeAttributes>
             <connections>
+                <outlet property="addTweetButton" destination="Do9-Wi-Xfm" id="jVR-jo-A5E"/>
                 <outlet property="tweetsTable" destination="hps-fV-hAB" id="reb-Sz-MRO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -25,8 +28,26 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hps-fV-hAB">
-                    <rect key="frame" x="0.0" y="44" width="390" height="766"/>
+                    <rect key="frame" x="0.0" y="47" width="390" height="763"/>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Do9-Wi-Xfm">
+                    <rect key="frame" x="305" y="725" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="fj6-0G-y5L"/>
+                        <constraint firstAttribute="width" constant="50" id="fzN-UK-tEM"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="">
+                        <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
+                    </state>
+                    <buttonConfiguration key="configuration" style="filled" title="" cornerStyle="capsule">
+                        <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
+                        <backgroundConfiguration key="background"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="didPressAddTweet:" destination="-1" eventType="touchUpInside" id="j1n-xz-toy"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -35,13 +56,16 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="hps-fV-hAB" secondAttribute="bottom" id="IaW-YN-Adh"/>
                 <constraint firstItem="hps-fV-hAB" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="LMK-hm-mtG"/>
                 <constraint firstItem="hps-fV-hAB" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="LZd-i5-8Ni"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Do9-Wi-Xfm" secondAttribute="bottom" constant="35" id="SJ5-uo-Enx"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Do9-Wi-Xfm" secondAttribute="trailing" constant="35" id="UHL-CT-hUz"/>
             </constraints>
             <point key="canvasLocation" x="-89.230769230769226" y="-11.374407582938389"/>
         </view>
     </objects>
     <resources>
-        <image name="house" catalog="system" width="128" height="106"/>
-        <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="house" catalog="system" width="128" height="104"/>
+        <image name="house.fill" catalog="system" width="128" height="104"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

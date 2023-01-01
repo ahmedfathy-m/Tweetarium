@@ -22,9 +22,14 @@ extension TweetViewModel {
         "@\(displayTweet.user.screenName)"
     }
     
-    fileprivate var displayTweet: TweetObject {
+    var displayTweet: TweetObject {
         let value = isRetweet ? model.retweetedTweet! : model
         return value
+    }
+    
+    var tweetURL: String {
+        let url = "https://twitter.com/\(displayTweet.user.screenName)/status/\(displayTweet.idStr)"
+        return url
     }
     
     fileprivate var entities: Entity {
@@ -56,7 +61,8 @@ extension TweetViewModel {
         
         let mutableAttributedString = NSMutableAttributedString(string: value)
         let updatedRange = NSMakeRange(0, value.count)
-        let hashtagPattern = "#[A-Za-z0-9]*|@[A-Za-z0-9]*"
+//        let hashtagPattern = "#[A-Za-z0-9]*|@[A-Za-z0-9]*"
+        let hashtagPattern = "(#+[a-zA-Z0-9A-Za-zÀ-ÖØ-öø-ʸ(_)]{1,})|(@+[a-zA-Z0-9(_)]{1,})"
         let hashtagRegex = try? NSRegularExpression(pattern: hashtagPattern, options: [])
         let matches = hashtagRegex?.matches(in: value, options: [], range: updatedRange)
         

@@ -38,7 +38,7 @@ class NetworkService {
         }
         let logging = String(data: data, encoding: .utf8)
         handler?.deinitLoader()
-//        print(logging)
+        print(logging)
         
         // 3. VALIDATION
         if let error = validateResponse(response) {

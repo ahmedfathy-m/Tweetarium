@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -188,10 +189,10 @@
                                                         </collectionViewFlowLayout>
                                                     </collectionView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KZH-DC-RQW">
-                                                        <rect key="frame" x="94" y="283" width="135.5" height="25"/>
+                                                        <rect key="frame" x="93.5" y="283" width="136.5" height="25"/>
                                                         <subviews>
                                                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="hfU-qR-hYg">
-                                                                <rect key="frame" x="10" y="-0.5" width="115.5" height="26"/>
+                                                                <rect key="frame" x="10" y="-0.5" width="116.5" height="26"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <color key="pageIndicatorTintColor" systemColor="labelColor"/>
                                                                 <color key="currentPageIndicatorTintColor" systemColor="linkColor"/>
@@ -230,6 +231,9 @@
                                                             <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="didPressReply:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="z76-Y4-hwp"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NZR-59-3kL">
                                                         <rect key="frame" x="81" y="0.0" width="80.5" height="16"/>
@@ -338,16 +342,16 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="arrow.2.squarepath" catalog="system" width="128" height="89"/>
+        <image name="arrow.2.squarepath" catalog="system" width="128" height="88"/>
         <image name="like" width="21" height="21"/>
         <image name="like-selected" width="21" height="21"/>
-        <image name="message" catalog="system" width="128" height="113"/>
+        <image name="message" catalog="system" width="128" height="116"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="retweet" width="21" height="21"/>
         <image name="retweet-selected" width="21" height="21"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

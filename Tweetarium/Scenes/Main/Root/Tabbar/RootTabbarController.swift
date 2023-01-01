@@ -8,24 +8,19 @@
 import UIKit
 
 class RootTabbarController: UITabBarController {
-    lazy var customHeader = TwitterUserHeader.instantiateWithWidth(view.frame.width)
+//    lazy var customHeader = TwitterUserHeader.instantiateWithWidth(view.frame.width)
+    var customHeader: TwitterUserHeader!
+    weak var coordinator: TimelineCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         // MARK: - Navigation Bar
         let newTitleView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: view.frame.width, height: 50)))
         self.navigationItem.titleView = newTitleView
         newTitleView.addSubview(customHeader)
-        
-        // MARK: - Sub-ViewControllers
-        let screenTypes: [TimelineType] = [.mentions, .home, .profile]
-        let views: [TimelineViewController] = screenTypes.map { type in
-            let viewController = TimelineViewController()
-            viewController.configureTitles(type)
-            return viewController
-        }
-        self.setViewControllers(views, animated: true)
-        self.selectedIndex = 1
         customHeader.configure(with: (self.selectedViewController as! TimelineViewController).screenType)
     }
     
@@ -35,5 +30,12 @@ class RootTabbarController: UITabBarController {
         customHeader.configure(with: viewController.screenType)
         guard !(self.selectedViewController as! TimelineViewController).tweetsTable.visibleCells.isEmpty else { return }
         (self.selectedViewController as! TimelineViewController).tweetsTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+    }
+}
+
+
+extension RootTabbarController: TwitterHeaderDelegate {
+    func didRequestPresentationOfPreferences() {
+        coordinator?.shouldNavigateToSettings()
     }
 }

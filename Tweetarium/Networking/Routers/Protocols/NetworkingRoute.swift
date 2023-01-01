@@ -25,6 +25,7 @@ extension NetworkingRoute {
         }
         var request = URLRequest(url: targetURL)
         request.method = self.defaultMethod
+        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         
 //         Insert Body Parameters
         switch self.defaultMethod {

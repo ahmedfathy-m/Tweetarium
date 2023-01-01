@@ -10,6 +10,7 @@ import UIKit
 class TimelineViewController: AFViewController {
     // MARK: - IBOutlets & UI Elements
     @IBOutlet weak var tweetsTable: UITableView!
+    @IBOutlet weak var addTweetButton: UIButton!
     lazy var tweetsRefreshControl: UIRefreshControl = {
         let control = UIRefreshControl()
         control.attributedTitle = NSAttributedString(string: "Pull To Refresh")
@@ -18,7 +19,7 @@ class TimelineViewController: AFViewController {
     }()
     
     // MARK: - Coordinator
-    weak var coordinator: Coordinator?
+    weak var coordinator: TimelineCoordinator?
     
     // MARK: - ViewModel
     private(set) var screenType: TimelineType?
@@ -40,7 +41,6 @@ class TimelineViewController: AFViewController {
                 header.screenName = user.screenName
                 header.tweetCount = user.tweetsCount
                 header.imageView.kf.setImage(with: user.profileImage)
-                print("Date: \(user.createdAt)")
             }
         }
         
@@ -48,11 +48,23 @@ class TimelineViewController: AFViewController {
         Task { await viewModel.fetchUserDetails(handler: self) }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        addTweetButton.layer.shadowColor = UIColor.black.cgColor
+        addTweetButton.layer.shadowRadius = 5
+        addTweetButton.layer.shadowOpacity = 0.25
+        addTweetButton.layer.shadowOffset = CGSize(width: 5, height: 5)
+    }
+    
+    // MARK: - IBActions
     @objc func reloadTweets(_ sender: UIRefreshControl) {
         Task {
             await viewModel.fetchTimeline(handler: self)
             sender.endRefreshing()
         }
+    }
+    
+    @IBAction func didPressAddTweet(_ sender: UIButton) {
+        coordinator?.shouldPresentCreateTweetView(.tweet)
     }
     
     // MARK: - UI Configuration
@@ -80,9 +92,9 @@ extension TimelineViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let source = viewModel.tweets.value?[indexPath.row] else { return UITableViewCell() }
-        return TweetObjectView.instantiateCell(for: tableView, at: indexPath, source: source) { imageURL in
-            (self.coordinator as! MainCoordinator).shouldPresentImageView(with: imageURL)
-        }
+        let cell = TweetObjectView.instantiateCell(for: tableView, at: indexPath, source: source)
+        cell.delegate = self
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -92,5 +104,27 @@ extension TimelineViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension TimelineViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+    }
+}
+
+extension TimelineViewController: TweetObjectDelegate {
+    func didPressReplyToTweet(to tweetID: Int64) {
+        coordinator?.shouldPresentCreateTweetView(.reply(tweetID))
+    }
+    
+    func didPressLike(at tweetID: Int64, isAlreadyLiked: Bool) async -> String? {
+        await viewModel.likeTweet(isLiked: isAlreadyLiked, for:Int(tweetID))
+    }
+    
+    func didSelectImage(imageURL: URL?) {
+        coordinator?.shouldPresentImageView(with: imageURL)
+    }
+    
+    func didPressRetweetStatus(at tweetID: Int64, isAlreadyRetweeted: Bool) async -> String? {
+        await viewModel.retweetStatus(isRetweeted: isAlreadyRetweeted, for: Int(tweetID))
+    }
+    
+    func didPressQuoteRetweet(at tweetID: Int64) {
+        coordinator?.shouldPresentCreateTweetView(.quote(tweetID))
     }
 }

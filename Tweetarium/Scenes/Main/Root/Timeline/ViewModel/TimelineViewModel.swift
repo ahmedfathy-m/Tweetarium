@@ -41,4 +41,20 @@ class TimelineViewModel {
         guard let userData: UserObject = await NetworkService.shared.loadData(from: userRoute, handler: handler) else { return }
         user.value = userData
     }
+    
+    func likeTweet(isLiked: Bool, for tweetID: Int) async -> String? {
+        // Returns number of likes after engagement
+        let route = isLiked ? Actions.unlike(id: tweetID) : Actions.like(id: tweetID)
+        guard let tweet: TweetObject = await NetworkService.shared.loadData(from: route) else { return nil }
+        let tweetViewModel = TweetViewModel(model: tweet)
+        return tweetViewModel.numberOfLikes
+    }
+    
+    func retweetStatus(isRetweeted: Bool, for tweetID: Int) async -> String? {
+        // Returns number of retweets after engagement
+        let route = isRetweeted ? Actions.unretweet(id: tweetID) : Actions.retweet(id: tweetID)
+        guard let tweet: TweetObject = await NetworkService.shared.loadData(from: route) else { return nil }
+        let tweetViewModel = TweetViewModel(model: tweet)
+        return tweetViewModel.numberOfRetweets
+    }
 }

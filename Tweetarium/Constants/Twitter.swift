@@ -19,7 +19,7 @@ struct API {
     }
     
     struct Statuses {
-        static func retweet(_ id: Int) -> String { return "\(API.statuses)/retweet.json/\(id)" }
-        static func unretweet(_ id: Int) -> String { return "\(API.statuses)/unretweet.json/\(id)" }
+        static func retweet(_ id: Int) -> String { return "\(API.statuses)/retweet/\(id).json" }
+        static func unretweet(_ id: Int) -> String { return "\(API.statuses)/unretweet/\(id).json" }
     }
 }

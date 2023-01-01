@@ -36,10 +36,13 @@ extension URLRequest {
         }
         set {
             guard let url = self.url else { return }
-            var urlWithComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
-            let queryItems = newValue.map({URLQueryItem(name: $0.key, value: $0.value as? String)})
-            urlWithComponents?.queryItems = queryItems
-            self.url = urlWithComponents?.url
+            let query = newValue.map { (key: String, value: Any) in
+                let encodedValue = (value as! String).percentEncoded()
+                return "\(key)=\(encodedValue)"
+            }.joined(separator: "&")
+            let urlWithQuery = "\(url.absoluteString)?\(query)"
+            let finalURL = URL(string: urlWithQuery)
+            self.url = finalURL
         }
     }
 }

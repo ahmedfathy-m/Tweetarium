@@ -11,6 +11,7 @@ class AFViewController: UIViewController {
     
     fileprivate lazy var indicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
         indicator.hidesWhenStopped = true
         return indicator
     }()
