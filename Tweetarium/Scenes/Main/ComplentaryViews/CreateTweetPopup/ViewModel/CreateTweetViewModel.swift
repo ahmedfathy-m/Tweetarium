@@ -11,14 +11,18 @@ class CreateTweetViewModel {
     private(set) var user: Observable<UserViewModel> = Observable(nil)
     private(set) var createdTweet: Observable<TweetViewModel> = Observable(nil)
     private(set) var subtweet: Observable<TweetViewModel> = Observable(nil)
+    private(set) var tweetCount: Observable<Int> = Observable(nil)
+    private(set) var isPostingAllowed: Observable<Bool> = Observable(nil)
     
     // MARK: - Intent
     // 1. Loading the Screen -> Get User data
-    func fetchUserData(_ handler: ActivityHandler?) async {
-        guard let userId = Int(Defaults.userID.value as! String) else { return }
-        let route = Users.show(userId)
-        guard let userData: UserObject = await NetworkService.shared.loadData(from: route, handler: handler) else { return }
-        user.value = UserViewModel(user: userData)
+    func fetchUserData(_ handler: ActivityHandler?) {
+        Task {
+            guard let userId = Int(Defaults.userID.value as! String) else { return }
+            let route = Users.show(userId)
+            guard let userData: UserObject = await NetworkService.shared.loadData(from: route, handler: handler) else { return }
+            user.value = UserViewModel(user: userData)
+        }
     }
     
     // 1b. Loading the Screen -> Get Quoted/Replied Tweet Data
@@ -28,12 +32,30 @@ class CreateTweetViewModel {
         subtweet.value = TweetViewModel(model: tweetObject)
     }
     
-    // 2. Posting the tweet
-    func postTweet(text: String, inReplyToTweet: Int64? = nil, isQuoting: Bool = false,_ handler: ActivityHandler?) async {
-        var updatedText = text
-        if isQuoting { updatedText.append(" \(subtweet.value!.tweetURL)") }
-        let route = Statuses.create(text: updatedText, inReplyToTweetID: inReplyToTweet)
-        guard let tweetObject: TweetObject = await NetworkService.shared.loadData(from: route, handler: handler) else { return }
-        createdTweet.value = TweetViewModel(model: tweetObject)
+    func postTweet(text: String, type: TweetPostType, handler: ActivityHandler?) {
+        Task {
+            guard isPostingAllowed.value == true else { return }
+            var route: NetworkingRoute?
+            switch type {
+            case .tweet:
+                route = Statuses.create(text: text, inReplyToTweetID: nil)
+            case .quote:
+                route = Statuses.create(text: subtweet.value!.tweetURL, inReplyToTweetID: nil)
+            case .reply(let id):
+                route = Statuses.create(text: text, inReplyToTweetID: id)
+            }
+            guard let tweetObject: TweetObject = await NetworkService.shared.loadData(from: route!, handler: handler) else { return }
+            createdTweet.value = TweetViewModel(model: tweetObject)
+            handler?.shouldDismiss()
+        }
+    }
+    
+    func observeTextChange(_ value: String, isPlaceHolder: Bool) {
+        tweetCount.value = value.count
+        if value.count <= 280 && !isPlaceHolder {
+            isPostingAllowed.value = true
+        } else {
+            isPostingAllowed.value = false
+        }
     }
 }

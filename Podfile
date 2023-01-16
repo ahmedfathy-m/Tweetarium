@@ -8,5 +8,7 @@ target 'Tweetarium' do
   # Pods for Tweetarium
 pod 'CryptoSwift'
 pod 'Kingfisher'
+pod 'QuickSheet'
+pod 'Alamofire'
 
 end

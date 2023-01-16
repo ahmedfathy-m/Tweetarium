@@ -21,6 +21,7 @@ class CreateTweetPopup: AFViewController {
     @IBOutlet weak var subtweetPostingTime: UILabel!
     @IBOutlet weak var subtweetAuthorAvi: UIImageView!
     @IBOutlet weak var subtweetText: UILabel!
+    @IBOutlet weak var tweetButton: UIButton!
     
     // MARK: - Coordinator
     weak var coordinator: Coordinator?
@@ -28,57 +29,21 @@ class CreateTweetPopup: AFViewController {
     // MARK: - ViewModel
     let viewModel = CreateTweetViewModel()
     
-    // MARK: - View Configurations
-    var viewType: CreateTweetViewType = .tweet
+    // MARK: - Post Type
+    var postType: TweetPostType = .tweet
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.user.bind { user in
-            DispatchQueue.main.async {
-                self.userName.text = user?.displayName
-                self.userImage.kf.setImage(with: user?.displayImage)
-                self.screenName.text = user?.twitterHandle
-                self.tweetCount.text = user?.numberOfTweets
-            }
-        }
-        viewModel.subtweet.bind { tweet in
-            DispatchQueue.main.async {
-                self.subtweetText.attributedText = tweet?.displayText
-                self.subtweetAuthorName.text = tweet?.displayName
-                self.subtweetAuthorHandle.text = tweet?.displayHandle
-                self.subtweetPostingTime.text = tweet?.postedSince
-                self.subtweetAuthorAvi.kf.indicatorType = .activity
-                self.subtweetAuthorAvi.kf.setImage(with: tweet?.imageURL)
-            }
-        }
-        Task { await viewModel.fetchUserData(self) }
-        switch viewType {
-        case .quote(let tweetID), .reply(let tweetID) :
-            Task { await viewModel.fetchSubtweet(tweetID: tweetID, self) }
-        default:
-            break
-        }
+        userBinding()
+        subTweetBinding()
+        typeTweetBinding()
+        viewModel.fetchUserData(self)
+        configureViewBasedOnType()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // Profile Header Configuration
-        self.userImage.kf.indicatorType = .activity
-        self.userImage.layer.cornerRadius = userImage.frame.height / 2
-        self.userImage.clipsToBounds = true
-        
-        // Subtweet Configuration
-        subtweetView.layer.cornerRadius = 10
-        subtweetView.layer.borderColor = UIColor.systemGray4.cgColor
-        subtweetView.layer.borderWidth = 1.5
-        subtweetAuthorAvi.layer.cornerRadius = subtweetAuthorAvi.frame.height / 2
-        
-        switch viewType {
-        case .tweet:
-            subtweetView.isHidden = true
-        case .quote, .reply:
-            subtweetView.isHidden = false
-        }
+        configureInterfaceOnAppear()
     }
     
     override func viewDidLayoutSubviews() {
@@ -91,22 +56,6 @@ class CreateTweetPopup: AFViewController {
     }
     
     @IBAction func didPressTweet(_ sender: UIButton) {
-        Task {
-            switch viewType {
-            case .tweet:
-                await viewModel.postTweet(text: tweetTextView.text, self)
-            case .quote:
-                await viewModel.postTweet(text: tweetTextView.text, isQuoting: true, self)
-            case .reply(let id):
-                await viewModel.postTweet(text: tweetTextView.text, inReplyToTweet: id ,self)
-            }
-            self.dismiss(animated: true)
-        }
+        viewModel.postTweet(text: tweetTextView.text, type: self.postType, handler: self)
     }
-}
-
-enum CreateTweetViewType {
-    case tweet
-    case quote(_ id: Int64)
-    case reply(_ id: Int64)
 }

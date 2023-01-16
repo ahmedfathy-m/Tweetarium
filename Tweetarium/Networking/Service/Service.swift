@@ -35,14 +35,17 @@ class NetworkService {
             (data, response) = try await session.data(for: request, delegate: monitor)
         } catch {
             handler?.present(error.localizedDescription, type: .error)
+            print(error)
+            print(error.localizedDescription)
         }
         let logging = String(data: data, encoding: .utf8)
         handler?.deinitLoader()
-        print(logging)
         
         // 3. VALIDATION
         if let error = validateResponse(response) {
             handler?.present(error.localizedDescription, type: .error)
+            print(logging)
+            print(error.localizedDescription)
             return nil
         }
         

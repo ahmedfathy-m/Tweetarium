@@ -64,5 +64,8 @@ extension AFViewController: ActivityHandler {
         print(message)
     }
     
+    func shouldDismiss() {
+        self.dismiss(animated: true)
+    }
     
 }

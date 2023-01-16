@@ -8,7 +8,9 @@
 import Foundation
 import AuthenticationServices
 
-protocol ActivityHandler: LoadingHandler, MessageHandler {}
+protocol ActivityHandler: LoadingHandler, MessageHandler {
+    func shouldDismiss()
+}
 
 protocol AuthenticationHandler: ASWebAuthenticationPresentationContextProviding, ActivityHandler {}
 

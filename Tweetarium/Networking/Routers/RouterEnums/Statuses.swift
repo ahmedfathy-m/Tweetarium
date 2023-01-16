@@ -67,6 +67,4 @@ extension Statuses: NetworkingRoute {
     var shouldSignRequest: Bool {
         return true
     }
-    
-    
 }

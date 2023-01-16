@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum TimelineType {
-    case home
+enum TimelineType: Int {
     case mentions
+    case home
     case profile
     
     var title: String {
