@@ -21,7 +21,7 @@ class AppCoordinator: Coordinator {
     var parentCoordinator: Coordinator?
     var navigationController: UINavigationController
     var isLoggedIn: Bool {
-        return !((Defaults.userID.value as? String)?.isEmpty ?? true)
+        UserDefaults.standard.userID?.isEmpty == false
     }
     
     func start() {

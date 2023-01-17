@@ -27,7 +27,7 @@ class CreateTweetPopup: AFViewController {
     weak var coordinator: Coordinator?
     
     // MARK: - ViewModel
-    let viewModel = CreateTweetViewModel()
+    var viewModel: CreateTweetViewModelProtocol!
     
     // MARK: - Post Type
     var postType: TweetPostType = .tweet

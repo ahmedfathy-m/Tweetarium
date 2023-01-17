@@ -9,7 +9,7 @@ import UIKit
 
 extension CreateTweetPopup: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "What's Happening?!!" {
+        if textView.text == "What's Happening?!!"~ {
             textView.text = ""
             textView.textColor = .black
         }
@@ -17,7 +17,7 @@ extension CreateTweetPopup: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "What's Happening?!!"
+            textView.text = "What's Happening?!!"~
             textView.textColor = .placeholderText
         }
     }

@@ -26,9 +26,9 @@ class RootTabbarController: UITabBarController {
         guard let index = tabBar.items?.firstIndex(of: item) else { return }
         switch index {
             case 0:
-                customHeader.showTitle("Mentions")
+                customHeader.showTitle("Mentions"~)
             case 1:
-                customHeader.showTitle("Home")
+            customHeader.showTitle("Home"~)
             case 2:
                 guard let user = user else { return }
             customHeader.showUserInfo(name: user.name, count: user.tweetsCount, image: user.profileImage)

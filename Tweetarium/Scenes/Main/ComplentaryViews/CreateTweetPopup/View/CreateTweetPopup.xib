@@ -40,6 +40,9 @@
                     <buttonConfiguration key="configuration" style="filled" title="Dismiss" imagePadding="5" cornerStyle="capsule">
                         <imageReference key="image" image="xmark.circle.fill" catalog="system" symbolScale="medium"/>
                     </buttonConfiguration>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="Dismiss"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="didPressDismiss:" destination="-1" eventType="touchUpInside" id="jWg-kQ-Uza"/>
                     </connections>
@@ -50,6 +53,9 @@
                     <buttonConfiguration key="configuration" style="filled" title="Tweet" imagePadding="5" cornerStyle="capsule">
                         <imageReference key="image" image="square.and.pencil" catalog="system" symbolScale="medium"/>
                     </buttonConfiguration>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="Tweet"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="didPressTweet:" destination="-1" eventType="touchUpInside" id="J5e-KS-klQ"/>
                     </connections>

@@ -8,34 +8,29 @@
 import Foundation
 import AuthenticationServices
 
-class LoadingViewModel {
-    var oAuthToken: String?
-    var oAuthTokenSecret: String?
-    var callbackConfirmed: Bool?
-    
-    var onSuccessfulLogin: (String)->()
-    
-    init(onSuccessfulLogin: @escaping (String) -> Void) {
-        self.onSuccessfulLogin = onSuccessfulLogin
-    }
+class LoadingViewModel: LoadingViewModelProtocol {
+    // MARK: - Observables
+    var didSuccessfullyLogin: Observable<Bool> = Observable(nil)
+    var didFetchInitialToken: Observable<Bool> = Observable(nil)
     
     // MARK: - Intents
-    
     // 1. INITIAL LOADING
-    func fetchInitalOauthToken(handler: ActivityHandler? = nil) async {
-        clearTemporaryTokens()
-        guard let response = await NetworkService.shared.fetchText(from: OAuth.requestToken(""), handler: handler) else { return }
-        let components = response.components(separatedBy: "&")
-        let temporaryAccessToken = components[0].components(separatedBy: "=")[1]
-        let temporaryAccessTokenSecret = components[1].components(separatedBy: "=")[1]
-        Defaults.accessToken.setValue(temporaryAccessToken)
-        Defaults.accessTokenSecret.setValue(temporaryAccessTokenSecret)
+    func fetchInitalOauthToken() {
+        Task {
+            clearTemporaryTokens()
+            guard let response = await NetworkService.shared.fetchText(from: OAuth.requestToken("")) else { return }
+            let components = response.components(separatedBy: "&")
+            let temporaryAccessToken = components[0].components(separatedBy: "=")[1]
+            let temporaryAccessTokenSecret = components[1].components(separatedBy: "=")[1]
+            UserDefaults.standard.accessToken = temporaryAccessToken
+            UserDefaults.standard.accessTokenSecret = temporaryAccessTokenSecret
+            didFetchInitialToken.value = true
+        }
     }
     
-    func clearTemporaryTokens() {
-        let value: String? = nil
-        Defaults.accessToken.setValue(value)
-        Defaults.accessTokenSecret.setValue(value)
+    private func clearTemporaryTokens() {
+        UserDefaults.standard.accessToken = nil
+        UserDefaults.standard.accessTokenSecret = nil
     }
     
     // 2. SIGN IN PRESSED
@@ -52,12 +47,12 @@ class LoadingViewModel {
                 Task {
                     guard let response = await NetworkService.shared.fetchText(from: route) else { return }
                     let responseComponents = response.components(separatedBy: "&").map({$0.components(separatedBy: "=")[1]})
-                    Defaults.accessToken.setValue(responseComponents[0])
-                    Defaults.accessTokenSecret.setValue(responseComponents[1])
-                    Defaults.userID.setValue(responseComponents[2])
+                    UserDefaults.standard.accessToken = responseComponents[0]
+                    UserDefaults.standard.accessTokenSecret = responseComponents[1]
+                    UserDefaults.standard.userID = responseComponents[2]
                     let screenName = responseComponents[3]
                     print("Welcome, \(screenName)")
-                    DispatchQueue.main.async { self.onSuccessfulLogin(screenName) }
+                    self.didSuccessfullyLogin.value = true
                 }
             }
         }

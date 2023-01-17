@@ -43,12 +43,42 @@ extension MainCoordinator: TimelineCoordinator {
     
     func shouldPresentCreateTweetView(_ type: TweetPostType) {
         let viewController = CreateTweetPopup()
+        viewController.viewModel = CreateTweetViewModel()
         viewController.postType = type
         navigationController.presentQuickSheet(viewController, options: .scrollableHalf)
     }
     
     func shouldNavigateToSettings() {
         let viewController = PreferencesVC()
+        viewController.coordinator = self
         navigationController.pushViewController(viewController, animated: true)
+    }
+}
+
+protocol PreferncesCoordinator: AnyObject {
+    func reset()
+    func presentChangeAlert()
+    func presetLogOutAlert()
+    func logout()
+}
+
+extension MainCoordinator: PreferncesCoordinator {
+    func reset() {
+        self.parentCoordinator?.start()
+    }
+    
+    func presentChangeAlert() {
+        let alert = factory.createWarningAlert(coordinator: self)
+        navigationController.present(alert, animated: true)
+    }
+    
+    func presetLogOutAlert() {
+        let alert = factory.createLogOutAlert(coordinator: self)
+        navigationController.present(alert, animated: true)
+    }
+    
+    func logout() {
+        UserDefaults.standard.removeAll()
+        self.reset()
     }
 }

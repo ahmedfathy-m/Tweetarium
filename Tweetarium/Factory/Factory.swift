@@ -34,14 +34,14 @@ class ViewControllerFactory {
             someView.topAnchor.constraint(equalTo: customHeader.topAnchor),
             someView.bottomAnchor.constraint(equalTo: customHeader.bottomAnchor)
         ])
-        customHeader.showTitle("Home") // Initial Value
+        customHeader.showTitle("Home"~) // Initial Value
         
         // Create Tabs
         let screenTypes: [TimelineType] = [.mentions, .home, .profile]
         let views: [TimelineViewController] = screenTypes.map { type in
             let viewController = TimelineViewController()
             viewController.coordinator = coordinator
-            viewController.tabBarItem.title = type.title
+            viewController.tabBarItem.title = type.title~
             viewController.tabBarItem.image = UIImage(systemName: type.itemImage)
             viewController.tabBarItem.selectedImage = UIImage(systemName: "\(type.itemImage).fill")
             viewController.viewModel = TimelineViewModel(type)
@@ -67,5 +67,28 @@ class ViewControllerFactory {
             view.heightAnchor.constraint(equalToConstant: height)
         ])
         return view
+    }
+    
+    func createWarningAlert(coordinator: PreferncesCoordinator?) -> UIAlertController {
+        let alert = UIAlertController(title: "Alert"~, message: "The application must restart for the changes to take effect."~, preferredStyle: .actionSheet)
+        let exitAction = UIAlertAction(title: "Restart App"~, style: .default) { _ in
+            coordinator?.reset()
+            UIView.updateViewsDirection()
+        }
+        let laterAction = UIAlertAction(title: "Later"~, style: .destructive)
+        alert.addAction(exitAction)
+        alert.addAction(laterAction)
+        return alert
+    }
+    
+    func createLogOutAlert(coordinator: PreferncesCoordinator?) -> UIAlertController {
+        let alert = UIAlertController(title: "Alert"~, message: "Are you certain you want to log out of Tweetarium?"~, preferredStyle: .actionSheet)
+        let logout = UIAlertAction(title: "Logout"~, style: .destructive) { _ in
+            coordinator?.logout()
+        }
+        let laterAction = UIAlertAction(title: "Cancel"~, style: .default)
+        alert.addAction(logout)
+        alert.addAction(laterAction)
+        return alert
     }
 }

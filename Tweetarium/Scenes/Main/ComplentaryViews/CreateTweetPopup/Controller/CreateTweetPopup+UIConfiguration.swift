@@ -13,10 +13,10 @@ extension CreateTweetPopup {
     func configureViewBasedOnType() {
         switch postType {
         case .quote(let tweetID) :
-            tweetButton.setTitle("Quote", for: .normal)
+            tweetButton.setTitle("Quote"~, for: .normal)
             Task { await viewModel.fetchSubtweet(tweetID: tweetID, self) }
         case .reply(let tweetID):
-            tweetButton.setTitle("Reply", for: .normal)
+            tweetButton.setTitle("Reply"~, for: .normal)
             Task { await viewModel.fetchSubtweet(tweetID: tweetID, self) }
         default:
             break
@@ -37,6 +37,7 @@ extension CreateTweetPopup {
         tweetTextView.layer.cornerRadius = 10
         
         // Text View
+        self.tweetTextView.text = "What's Happening?!!"~
         self.tweetTextView.delegate = self
         
         switch postType {

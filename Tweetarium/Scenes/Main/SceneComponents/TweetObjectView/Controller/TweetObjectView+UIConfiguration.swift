@@ -64,12 +64,12 @@ extension TweetObjectView {
     
     func configureUIMenu() {
         retweetButton.showsMenuAsPrimaryAction = true
-        let retweet = UIAction(title: "Retweet", image: UIImage(systemName: "arrow.2.squarepath")) { action in
+        let retweet = UIAction(title: "Retweet"~, image: UIImage(systemName: "arrow.2.squarepath")) { action in
             self.didPressRetweet()
         }
-        let quote = UIAction(title: "Quote Retweet", image: UIImage(systemName: "pencil")) { _ in
+        let quote = UIAction(title: "Quote Retweet"~, image: UIImage(systemName: "pencil")) { _ in
             self.didPressQuote()
         }
-        retweetButton.menu = UIMenu(title: "Retweet", children: [retweet, quote])
+        retweetButton.menu = UIMenu(title: "Retweet"~, children: [retweet, quote])
     }
 }

@@ -2,32 +2,84 @@
 //  PreferencesVC.swift
 //  Tweetarium
 //
-//  Created by Ahmed Fathy on 31/12/2022.
+//  Created by Ahmed Fathy on 16/01/2023.
 //
 
 import UIKit
+import Eureka
 
-class PreferencesVC: AFViewController {
-    @IBOutlet weak var tableView: UITableView!
+class PreferencesVC: FormViewController {
+    // MARK: - Coordinator
+    weak var coordinator: PreferncesCoordinator?
     
-    let preferences = [PreferenceItem(name: "Enable Dark Mode", key: "color_scheme", source: .local, valueSource: .switchable)]
-
+    // MARK: - Life Cycle
+    init() {
+        super.init(style: .insetGrouped)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.delegate = self
-        tableView.dataSource = self
-    }
-}
-
-extension PreferencesVC: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return preferences.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = preferences[indexPath.row].name
-        return cell
+        form +++ Section("Preferences"~)
+        <<< SwitchRow(){ row in
+            row.title = "Enable Dark Mode"~
+            row.onChange { row in
+                guard let window = self.view.window else { return }
+                guard let value = row.value else { return }
+                UIView.transition(with: window, duration: 1, options: .transitionCrossDissolve) {
+                    window.backgroundColor = value ? .black : .white
+                    window.overrideUserInterfaceStyle = value ? .dark : .light
+                }
+                UserDefaults.standard.isDarkModeEnabled = value
+            }
+            row.value = UserDefaults.standard.isDarkModeEnabled
+        }
+        <<< ActionSheetRow<String>(){
+            $0.title = "Language"~
+            $0.options = ["العربية", "English"]
+            if UserDefaults.standard.currentLanguage == "en" {
+                $0.value = "English"
+            } else if UserDefaults.standard.currentLanguage == "ar" {
+                $0.value = "العربية"
+            }
+            $0.onChange { row in
+                guard let value = row.value else { return }
+                if value == "English" {
+                    UserDefaults.standard.setLanguage("en")
+                } else if value == "العربية" {
+                    UserDefaults.standard.setLanguage("ar")
+                }
+                self.coordinator?.presentChangeAlert()
+            }
+        }
+        +++ Section("Account"~)
+        <<< ButtonRow() {
+            $0.title = "Logout"~
+            $0.onCellSelection { cell, row in
+                self.coordinator?.presetLogOutAlert()
+            }
+        }
+        +++ Section("Developer"~)
+        <<< ButtonRow(){
+            $0.title = "Visit Repository.."~
+            $0.onCellSelection { cell, row in
+                UIApplication.shared.open(URL(string: "https://github.com/ahmedfathy-m/Tweetarium")!)
+            }
+        }
+        <<< ButtonRow(){
+            $0.title = "Follow Me on LinkedIn"~
+            $0.onCellSelection { cell, row in
+                UIApplication.shared.open(URL(string: "https://www.linkedin.com/in/ahmedfathy-mha/")!)
+            }
+        }
+        <<< ButtonRow(){
+            $0.title = "Follow Me on Github"~
+            $0.onCellSelection { cell, row in
+                UIApplication.shared.open(URL(string: "https://github.com/ahmedfathy-m")!)
+            }
+        }
     }
 }

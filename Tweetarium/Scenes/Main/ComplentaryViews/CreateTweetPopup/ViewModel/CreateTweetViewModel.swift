@@ -7,12 +7,13 @@
 
 import Foundation
 
-class CreateTweetViewModel {
-    private(set) var user: Observable<UserViewModel> = Observable(nil)
-    private(set) var createdTweet: Observable<TweetViewModel> = Observable(nil)
-    private(set) var subtweet: Observable<TweetViewModel> = Observable(nil)
-    private(set) var tweetCount: Observable<Int> = Observable(nil)
-    private(set) var isPostingAllowed: Observable<Bool> = Observable(nil)
+class CreateTweetViewModel: CreateTweetViewModelProtocol {
+    // MARK: - Observables
+    var user: Observable<UserViewModel> = Observable(nil)
+    var createdTweet: Observable<TweetViewModel> = Observable(nil)
+    var subtweet: Observable<TweetViewModel> = Observable(nil)
+    var tweetCount: Observable<Int> = Observable(nil)
+    var isPostingAllowed: Observable<Bool> = Observable(nil)
     
     // MARK: - Intent
     // 1. Loading the Screen -> Get User data

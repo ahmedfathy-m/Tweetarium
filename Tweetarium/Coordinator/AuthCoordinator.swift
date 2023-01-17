@@ -22,6 +22,7 @@ class AuthCoordinator: Coordinator {
     func start() {
         let loadingVC = LoadingViewController()
         loadingVC.coordinator = self
+        loadingVC.viewModel = LoadingViewModel()
         navigationController.setViewControllers([loadingVC], animated: true)
     }
     

@@ -21,7 +21,7 @@ extension UserViewModel {
     }
     
     var numberOfTweets: String {
-        return "\(user.tweetsCount.formattedInKFormat) Tweets"
+        return "\(user.tweetsCount.formattedInKFormat) \("Tweets"~)"
     }
     
     var displayImage: URL? {

@@ -1,0 +1,39 @@
+/* 
+  Localizable.strings
+  Tweetarium
+
+  Created by Ahmed Fathy on 17/01/2023.
+  
+*/
+// Authentication
+
+
+// Timeline
+"Home" = "الرئيسية";
+"Mentions" = "الردود";
+"Me" = "أنا";
+"Tweet" = "نشر";
+"Dismiss" = "إلغاء";
+"Retweet" = "إعادة النشر";
+"Quote Retweet" = "اقتباس و إعادة النشر";
+"Quote" = "اقتباس";
+"Reply" = "الرد";
+"Tweets" = "تغريدات";
+"What's Happening?!!" = "ماذا يحدث؟!";
+
+// Preferences
+"Preferences" = "الإعدادات";
+"Enable Dark Mode" = "تفعيل الوضع المظلم";
+"Language" = "اللغة";
+"Alert" = "تنبيه";
+"The application must restart for the changes to take effect." = "يجب على التطبيق أن يعيد التشغيل حتى تظهر التعديلات";
+"Later" = "لاحقاً";
+"Restart App" = "إعادة التشغيل";
+"Account" = "الحساب";
+"Logout" = "تسجيل الخروج";
+"Are you certain you want to log out of Tweetarium?" = "هل تريد تسجيل الخروج؟";
+"Cancel" = "إلغاء";
+"Developer" = "المطور";
+"Visit Repository.." = "قم بزيارة صفحة البرنامج";
+"Follow Me on LinkedIn" = "قم بمتابعتي على لينكد إن";
+"Follow Me on Github" = "قم بمتابعتي على جيت هاب";

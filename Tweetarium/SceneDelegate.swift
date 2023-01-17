@@ -22,6 +22,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let appCoordinator = AppCoordinator(navigation: navigationController)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+        
+        window?.backgroundColor = UserDefaults.standard.isDarkModeEnabled ? .black : .white
+        window?.overrideUserInterfaceStyle = UserDefaults.standard.isDarkModeEnabled ? .dark : .light
+        
         appCoordinator.start()
     }
 
