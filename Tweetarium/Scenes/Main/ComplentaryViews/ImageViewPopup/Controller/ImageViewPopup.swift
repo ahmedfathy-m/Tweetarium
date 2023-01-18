@@ -11,7 +11,12 @@ import Kingfisher
 class ImageViewPopup: AFViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var imageView: UIImageView!
-    var imageURL: URL?
+    
+    // MARK: - Coordinator
+    weak var coordinator: ImageViewCoordinator?
+    
+    // MARK: - Data
+    var imageURL: URL!
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -23,5 +28,15 @@ class ImageViewPopup: AFViewController {
     // MARK: - IBActions
     @IBAction func willDismissView(_ sender: UIButton) {
         self.dismiss(animated: true)
+    }
+    
+    @IBAction func willSaveImage(_ sender: UIButton) {
+        if let image = imageView.image {
+            UIImageWriteToSavedPhotosAlbum(image, self, #selector(imageDidSave), nil)
+        }
+    }
+    
+    @objc func imageDidSave(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        coordinator?.presentImageSaveMessage()
     }
 }

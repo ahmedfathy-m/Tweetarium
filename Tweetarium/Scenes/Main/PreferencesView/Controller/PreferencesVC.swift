@@ -10,7 +10,7 @@ import Eureka
 
 class PreferencesVC: FormViewController {
     // MARK: - Coordinator
-    weak var coordinator: PreferncesCoordinator?
+    weak var coordinator: PreferencesCoordinator?
     
     // MARK: - Life Cycle
     init() {

@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,25 +26,45 @@
                     <rect key="frame" x="293" y="64" width="101" height="31"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" image="xmark.circle.fill" catalog="system" title="Dismiss" imagePadding="5"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="Dismiss"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="willDismissView:" destination="-1" eventType="touchUpInside" id="vbP-aT-nrX"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hfM-Sd-JVW">
+                    <rect key="frame" x="30" y="64" width="82" height="31"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="arrow.down.app.fill" catalog="system" title="Save" imagePadding="5"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="Save"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="willSaveImage:" destination="-1" eventType="touchUpInside" id="TSl-YK-F0y"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xaR-ie-yhb" secondAttribute="trailing" constant="20" id="2Pz-IL-lRa"/>
                 <constraint firstAttribute="trailing" secondItem="ODp-B1-WvO" secondAttribute="trailing" id="IpP-8F-6pG"/>
                 <constraint firstAttribute="bottom" secondItem="ODp-B1-WvO" secondAttribute="bottom" id="VGh-Mr-BOW"/>
                 <constraint firstItem="xaR-ie-yhb" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="bIA-Hv-eEu"/>
                 <constraint firstItem="ODp-B1-WvO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="jUW-Pj-HjS"/>
+                <constraint firstItem="hfM-Sd-JVW" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="pFu-XQ-z50"/>
+                <constraint firstItem="hfM-Sd-JVW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="uDt-HT-Orl"/>
                 <constraint firstItem="ODp-B1-WvO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="x1d-ts-Jm0"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="51.5625"/>
         </view>
     </objects>
     <resources>
+        <image name="arrow.down.app.fill" catalog="system" width="128" height="114"/>
         <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

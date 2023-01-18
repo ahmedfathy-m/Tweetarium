@@ -16,8 +16,6 @@ class AFViewController: UIViewController {
         return indicator
     }()
 
-    var activityLoader: AFLoadingIndicator = AFLoadingIndicator(frame: CGRect(origin: .zero, size: CGSize(width: 100, height: 100)))
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(indicator)
@@ -35,7 +33,6 @@ extension AFViewController: ActivityHandler {
             self.indicator.isHidden = false
             self.indicator.startAnimating()
         }
-        print("Start")
     }
     
     func deinitLoader() {

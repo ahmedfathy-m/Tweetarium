@@ -35,12 +35,17 @@ extension CreateTweetPopup {
     func typeTweetBinding() {
         viewModel.tweetCount.bind { count in
             guard let count = count else { return }
-            print("Current Tweet Count: \(count)")
+            UIView.transition(with: self.charCountLabel, duration: 0.25, options: .transitionFlipFromTop) {
+                self.charCountLabel.text = "\(count)/280"
+            }
         }
         
-        viewModel.isPostingAllowed.bind { value in
-            guard let value = value else { return }
-            print("Posting is\(value ? "" : "not") allowed")
+        viewModel.isPostingAllowed.bind { allowed in
+            guard let allowed = allowed else { return }
+            UIView.transition(with: self.tweetButton, duration: 0.25, options: .transitionCrossDissolve) {
+                self.tweetButton.isEnabled = allowed
+                self.charCountLabel.textColor = allowed ? .black : .systemRed
+            }
         }
     }
 }

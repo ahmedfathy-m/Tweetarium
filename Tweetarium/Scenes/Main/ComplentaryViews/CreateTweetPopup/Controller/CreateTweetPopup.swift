@@ -22,6 +22,7 @@ class CreateTweetPopup: AFViewController {
     @IBOutlet weak var subtweetAuthorAvi: UIImageView!
     @IBOutlet weak var subtweetText: UILabel!
     @IBOutlet weak var tweetButton: UIButton!
+    @IBOutlet weak var charCountLabel: UILabel!
     
     // MARK: - Coordinator
     weak var coordinator: Coordinator?

@@ -20,6 +20,9 @@
 "Reply" = "الرد";
 "Tweets" = "تغريدات";
 "What's Happening?!!" = "ماذا يحدث؟!";
+"Image was saved successfully" = "تم حفظ الصورة بنجاح";
+"Okay" = "حسناً";
+"Success" = "عملية ناجحة";
 
 // Preferences
 "Preferences" = "الإعدادات";

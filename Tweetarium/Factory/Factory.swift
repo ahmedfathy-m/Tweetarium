@@ -69,7 +69,7 @@ class ViewControllerFactory {
         return view
     }
     
-    func createWarningAlert(coordinator: PreferncesCoordinator?) -> UIAlertController {
+    func createWarningAlert(coordinator: PreferencesCoordinator?) -> UIAlertController {
         let alert = UIAlertController(title: "Alert"~, message: "The application must restart for the changes to take effect."~, preferredStyle: .actionSheet)
         let exitAction = UIAlertAction(title: "Restart App"~, style: .default) { _ in
             coordinator?.reset()
@@ -81,7 +81,7 @@ class ViewControllerFactory {
         return alert
     }
     
-    func createLogOutAlert(coordinator: PreferncesCoordinator?) -> UIAlertController {
+    func createLogOutAlert(coordinator: PreferencesCoordinator?) -> UIAlertController {
         let alert = UIAlertController(title: "Alert"~, message: "Are you certain you want to log out of Tweetarium?"~, preferredStyle: .actionSheet)
         let logout = UIAlertAction(title: "Logout"~, style: .destructive) { _ in
             coordinator?.logout()
@@ -89,6 +89,13 @@ class ViewControllerFactory {
         let laterAction = UIAlertAction(title: "Cancel"~, style: .default)
         alert.addAction(logout)
         alert.addAction(laterAction)
+        return alert
+    }
+    
+    func createSuccessMessage(message: String) -> UIAlertController {
+        let alert = UIAlertController(title: "Success"~, message: message, preferredStyle: .actionSheet)
+        let okayAction = UIAlertAction(title: "Okay"~, style: .default)
+        alert.addAction(okayAction)
         return alert
     }
 }
