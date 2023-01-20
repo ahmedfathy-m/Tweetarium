@@ -19,7 +19,7 @@ class CreateTweetViewModel: CreateTweetViewModelProtocol {
     // 1. Loading the Screen -> Get User data
     func fetchUserData(_ handler: ActivityHandler?) {
         Task {
-            guard let userId = Int(Defaults.userID.value as! String) else { return }
+            guard let userId = Int(UserDefaults.standard.userID ?? "0") else { return }
             let route = Users.show(userId)
             guard let userData: UserObject = await NetworkService.shared.loadData(from: route, handler: handler) else { return }
             user.value = UserViewModel(user: userData)

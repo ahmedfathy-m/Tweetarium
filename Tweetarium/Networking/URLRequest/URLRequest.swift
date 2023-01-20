@@ -14,10 +14,8 @@ extension URLRequest {
     }
     
     var authorization: String? {
-        get { return self.value(forHTTPHeaderField: "Authorization")
-        } set {
-            self.setValue(newValue, forHTTPHeaderField: "Authorization")
-        }
+        get { return self.value(forHTTPHeaderField: "Authorization") }
+        set { self.setValue(newValue, forHTTPHeaderField: "Authorization") }
     }
     
     var bodyParameters: [String: Any] {

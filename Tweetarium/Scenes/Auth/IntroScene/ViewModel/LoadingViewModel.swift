@@ -22,33 +22,30 @@ class LoadingViewModel: LoadingViewModelProtocol {
             let components = response.components(separatedBy: "&")
             let temporaryAccessToken = components[0].components(separatedBy: "=")[1]
             let temporaryAccessTokenSecret = components[1].components(separatedBy: "=")[1]
-            UserDefaults.standard.accessToken = temporaryAccessToken
-            UserDefaults.standard.accessTokenSecret = temporaryAccessTokenSecret
+            UserDefaults.standard.credentials = Credentials(token: temporaryAccessToken, secret: temporaryAccessTokenSecret)
             didFetchInitialToken.value = true
         }
     }
     
     private func clearTemporaryTokens() {
-        UserDefaults.standard.accessToken = nil
-        UserDefaults.standard.accessTokenSecret = nil
+        UserDefaults.standard.credentials = nil
     }
     
     // 2. SIGN IN PRESSED
     func initAuthenticationSession(handler: ASWebAuthenticationPresentationContextProviding){
-        let token = Defaults.accessToken.value as! String
+        guard let token = UserDefaults.standard.credentials?.token else { return }
         let url = URL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(token)")!
         let session = ASWebAuthenticationSession(url: url, callbackURLScheme: "tweetarium") { callback, error in
             guard error == nil, let callback = callback else { return }
             let callbackWithComponents = URLComponents(url: callback, resolvingAgainstBaseURL: true)
             let queryItems = callbackWithComponents?.queryItems
             if let verifier = queryItems?[1].value {
-                Defaults.oauthVerifier.setValue(verifier)
+                UserDefaults.standard.oauthVerifier = verifier
                 let route = OAuth.accessToken
                 Task {
                     guard let response = await NetworkService.shared.fetchText(from: route) else { return }
                     let responseComponents = response.components(separatedBy: "&").map({$0.components(separatedBy: "=")[1]})
-                    UserDefaults.standard.accessToken = responseComponents[0]
-                    UserDefaults.standard.accessTokenSecret = responseComponents[1]
+                    UserDefaults.standard.credentials = Credentials(token: responseComponents[0], secret: responseComponents[1])
                     UserDefaults.standard.userID = responseComponents[2]
                     let screenName = responseComponents[3]
                     print("Welcome, \(screenName)")

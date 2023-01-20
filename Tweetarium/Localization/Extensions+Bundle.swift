@@ -28,7 +28,7 @@ extension Bundle {
                 return
             }
         }
-        guard let bundlePath = Bundle.main.path(forResource: UserDefaults.standard.currentLanguage, ofType: "lproj"),
+        guard let bundlePath = Bundle.main.path(forResource: UserDefaults.standard.currentLanguage.key, ofType: "lproj"),
             let bundle = Bundle(path: bundlePath) else {
                 return Bundle.main.myLocaLizedString(forKey: key, value: value, table: table)
         }

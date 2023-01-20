@@ -25,24 +25,22 @@ extension NetworkingRoute {
         }
         var request = URLRequest(url: targetURL)
         request.method = self.defaultMethod
-        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.contentType = .formURLEncoded
         
 //         Insert Body Parameters
         switch self.defaultMethod {
-        case .post, .patch, .put: request.bodyParameters = self.defaultBodyParameters
-        default: break
+        case .post, .patch, .put:
+            request.bodyParameters = self.defaultBodyParameters
+        default:
+            break
         }
         
         request.queryParameters = defaultQueryParameters
         
         if shouldSignRequest {
-            let signer = OAuthRequestSigner(route: self, clientKey: APIKeys.key, clientSecret: APIKeys.secret, oauthToken: Defaults.accessToken.value as? String, oauthTokenSecret: Defaults.accessTokenSecret.value as? String)
-            let header = signer.buildAuthHeader()
-            request.addValue(header, forHTTPHeaderField: "Authorization")
+            let signer = OAuthRequestSigner(route: self, client: Client.shared, credentials: UserDefaults.standard.credentials)
+            signer.sign(request: &request)
         }
-        
-        print(#function)
-        print(request.value(forHTTPHeaderField: "Authorization"))
         
         return request
     }

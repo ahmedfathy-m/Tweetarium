@@ -25,7 +25,7 @@ extension MainCoordinator: TimelineCoordinator {
     }
     
     func shouldNavigateToSettings() {
-        let viewController = PreferencesVC()
+        let viewController = PreferencesHostingController()
         viewController.coordinator = self
         navigationController.pushViewController(viewController, animated: true)
     }

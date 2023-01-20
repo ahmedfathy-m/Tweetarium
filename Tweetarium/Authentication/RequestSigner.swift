@@ -22,12 +22,14 @@ class OAuthRequestSigner {
     let nonce = UUID().uuidString.prefix(8).description
     
     // 2. INITIALIZER
-    init(route: NetworkingRoute, clientKey: String, clientSecret: String, oauthToken: String? = nil, oauthTokenSecret: String? = nil) {
+    init(route: NetworkingRoute,
+         client: Client,
+         credentials: Credentials?) {
         self.route = route
-        self.clientKey = clientKey
-        self.clientSecret = clientSecret
-        self.oauthToken = oauthToken
-        self.oauthTokenSecret = oauthTokenSecret
+        self.clientKey = client.key
+        self.clientSecret = client.secret
+        self.oauthToken = credentials?.token
+        self.oauthTokenSecret = credentials?.secret
     }
     
     // 2. SIGNATURE BASE STRING
@@ -104,10 +106,7 @@ class OAuthRequestSigner {
     }
     
     // 6. SIGNED OAUTH REQUEST
-    func sign(request: URLRequest) -> URLRequest {
-        let header = buildAuthHeader()
-        var signedRequest = request
-        signedRequest.addValue(header, forHTTPHeaderField: "Authorization")
-        return signedRequest
+    func sign(request: inout URLRequest) {
+        request.authorization = buildAuthHeader()
     }
 }

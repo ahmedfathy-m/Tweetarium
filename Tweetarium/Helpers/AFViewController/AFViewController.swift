@@ -52,13 +52,14 @@ extension AFViewController: ActivityHandler {
     }
     
     func present(_ message: String, type: MessageType) {
-        let alert = UIAlertController(title: "ERROR", message: message, preferredStyle: .actionSheet)
-        let action = UIAlertAction(title: "Okay", style: .default)
-        alert.addAction(action)
         DispatchQueue.main.async {
-            self.present(alert, animated: true)
+            let alert = UIAlertController(title: "ERROR", message: message, preferredStyle: .actionSheet)
+            let action = UIAlertAction(title: "Okay", style: .default)
+            alert.addAction(action)
+            DispatchQueue.main.async {
+                self.present(alert, animated: true)
+            }
         }
-        print(message)
     }
     
     func shouldDismiss() {

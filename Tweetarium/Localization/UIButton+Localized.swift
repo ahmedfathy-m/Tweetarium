@@ -16,3 +16,10 @@ extension UIButton {
         }
     }
 }
+
+extension UILabel {
+    @IBInspectable var localizedTitle: String {
+        get { (text ?? "")~ }
+        set { text = newValue~ }
+    }
+}

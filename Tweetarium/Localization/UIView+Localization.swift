@@ -10,9 +10,9 @@ import UIKit
 
 extension UIView {
     static func updateViewsDirection() {
-        if UserDefaults.standard.currentLanguage == "ar" {
+        if UserDefaults.standard.currentLanguage == .arabic {
             UIView.appearance().semanticContentAttribute = .forceRightToLeft
-        } else if UserDefaults.standard.currentLanguage == "en" {
+        } else if UserDefaults.standard.currentLanguage == .english {
             UIView.appearance().semanticContentAttribute = .forceLeftToRight
         }
     }

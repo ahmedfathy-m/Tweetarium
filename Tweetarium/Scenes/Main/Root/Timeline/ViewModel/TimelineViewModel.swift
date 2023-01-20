@@ -39,7 +39,7 @@ class TimelineViewModel: TimelineViewModelProtocol {
     
     func fetchUserDetails(handler: ActivityHandler? = nil) {
         Task {
-            guard let userID = Int(Defaults.userID.value as! String) else { return }
+            guard let userID = Int(UserDefaults.standard.userID ?? "0") else { return }
             let userRoute = Users.show(userID)
             guard let userData: UserObject = await NetworkService.shared.loadData(from: userRoute, handler: handler) else { return }
             user.value = userData
