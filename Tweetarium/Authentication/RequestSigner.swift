@@ -95,7 +95,10 @@ class OAuthRequestSigner {
             auth["oauth_token"] = oauthToken
         }
         
-        var authHeader = auth.map({ "\($0.key.percentEncoded())=\($0.value.percentEncoded())" }).sorted().joined(separator: ",")
+        var authHeader = auth
+            .map({ "\($0.key.percentEncoded())=\($0.value.percentEncoded())" })
+            .sorted()
+            .joined(separator: ",")
         authHeader = "OAuth \(authHeader)"
         return authHeader
     }
@@ -104,7 +107,6 @@ class OAuthRequestSigner {
     func sign(request: URLRequest) -> URLRequest {
         let header = buildAuthHeader()
         var signedRequest = request
-        print(header)
         signedRequest.addValue(header, forHTTPHeaderField: "Authorization")
         return signedRequest
     }

@@ -13,6 +13,13 @@ extension URLRequest {
         set { self.httpMethod = newValue.rawValue}
     }
     
+    var authorization: String? {
+        get { return self.value(forHTTPHeaderField: "Authorization")
+        } set {
+            self.setValue(newValue, forHTTPHeaderField: "Authorization")
+        }
+    }
+    
     var bodyParameters: [String: Any] {
         get {
             let parameters = try? JSONSerialization.jsonObject(with: self.httpBody ?? Data()) as? [String : Any]
