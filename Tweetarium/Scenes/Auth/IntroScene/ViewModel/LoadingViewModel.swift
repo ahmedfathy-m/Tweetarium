@@ -35,7 +35,7 @@ class LoadingViewModel: LoadingViewModelProtocol {
     func initAuthenticationSession(handler: ASWebAuthenticationPresentationContextProviding){
         guard let token = UserDefaults.standard.credentials?.token else { return }
         let url = URL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(token)")!
-        let session = ASWebAuthenticationSession(url: url, callbackURLScheme: "tweetarium") { callback, error in
+        let session = ASWebAuthenticationSession(url: url, callbackURLScheme: APIKeys.callback) { callback, error in
             guard error == nil, let callback = callback else { return }
             let callbackWithComponents = URLComponents(url: callback, resolvingAgainstBaseURL: true)
             let queryItems = callbackWithComponents?.queryItems

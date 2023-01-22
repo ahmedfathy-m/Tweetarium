@@ -104,6 +104,7 @@
 		8C813F58297DAD8C009B32C3 /* MainCoordinator+LogoutAlertCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C813F57297DAD8C009B32C3 /* MainCoordinator+LogoutAlertCoordinator.swift */; };
 		8C813F5D297DB1CC009B32C3 /* SuccessMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C813F5B297DB1CC009B32C3 /* SuccessMessageViewController.swift */; };
 		8C813F5E297DB1CC009B32C3 /* SuccessMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C813F5C297DB1CC009B32C3 /* SuccessMessageViewController.xib */; };
+		8C813F63297DB685009B32C3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8C813F62297DB685009B32C3 /* README.md */; };
 		8CCEF8BD29769ECB001FFC96 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8CCEF8BF29769ECB001FFC96 /* Localizable.strings */; };
 		8CCEF8C32976A107001FFC96 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCEF8C22976A107001FFC96 /* String+Localized.swift */; };
 		8CCEF8C52976A15A001FFC96 /* UIButton+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCEF8C42976A15A001FFC96 /* UIButton+Localized.swift */; };
@@ -231,6 +232,7 @@
 		8C813F57297DAD8C009B32C3 /* MainCoordinator+LogoutAlertCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainCoordinator+LogoutAlertCoordinator.swift"; sourceTree = "<group>"; };
 		8C813F5B297DB1CC009B32C3 /* SuccessMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessMessageViewController.swift; sourceTree = "<group>"; };
 		8C813F5C297DB1CC009B32C3 /* SuccessMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuccessMessageViewController.xib; sourceTree = "<group>"; };
+		8C813F62297DB685009B32C3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		8CCEF8BE29769ECB001FFC96 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8CCEF8C02976A0E2001FFC96 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		8CCEF8C12976A0E4001FFC96 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 		743FD2CA293222A800DFC4DD /* Tweetarium */ = {
 			isa = PBXGroup;
 			children = (
+				8C813F62297DB685009B32C3 /* README.md */,
 				8CCEF8BA29769E5C001FFC96 /* Localization */,
 				8C766653295AE6050015499B /* Observable */,
 				8C2D7A3A29488777006D1CEA /* Defaults */,
@@ -1015,6 +1018,7 @@
 				8C5C683A294B5D2600F4C88D /* TweetObjectView.xib in Resources */,
 				74A605AF2932786A00286736 /* LoadingViewController.xib in Resources */,
 				74E3893D295E5A71000A4AB5 /* CreateTweetPopup.xib in Resources */,
+				8C813F63297DB685009B32C3 /* README.md in Resources */,
 				8C359648294C9CBB0077154E /* TweetMediaEntityView.xib in Resources */,
 				8C766662295B02550015499B /* TwitterUserHeader.xib in Resources */,
 				8C813F54297DA9A9009B32C3 /* LogoutAlertViewController.xib in Resources */,

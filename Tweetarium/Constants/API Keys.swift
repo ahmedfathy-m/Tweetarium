@@ -10,4 +10,5 @@ import Foundation
 struct APIKeys {
     static let key = "ol3I553gJSUILvIa5SfbPshir"
     static let secret = "kw3XwGOky2ctqRz8MSotRE5whxPqBbufg3KA1Xm7xA0EVl4OP7"
+    static let callback = "tweetarium"
 }
