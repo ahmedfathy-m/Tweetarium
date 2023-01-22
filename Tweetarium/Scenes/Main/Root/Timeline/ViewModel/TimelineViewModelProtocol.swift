@@ -15,4 +15,5 @@ protocol TimelineViewModelProtocol: AnyObject {
     // MARK: - Intents
     func fetchTimeline(handler: ActivityHandler?)
     func fetchUserDetails(handler: ActivityHandler?)
+    func reloadTimeline(handler: ActivityHandler?)
 }

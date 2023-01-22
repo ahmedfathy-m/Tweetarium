@@ -6,10 +6,13 @@
 //
 
 import Foundation
+import QuickSheet
 
 extension MainCoordinator: ImageViewCoordinator {
     func presentImageSaveMessage() {
         let alert = factory.createSuccessMessage(message: "Image was saved successfully"~)
-        navigationController.presentedViewController?.present(alert, animated: true)
+        let options = QuickSheetOptions(fraction: 0.45, isExpandable: false, isScrollable: false, cornerRadius: 20)
+        navigationController.presentedViewController?.presentQuickSheet(alert, options: options)
+//        navigationController.presentedViewController?.present(alert, animated: true)
     }
 }

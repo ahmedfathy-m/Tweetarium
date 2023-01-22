@@ -29,6 +29,7 @@
 "Enable Dark Mode" = "تفعيل الوضع المظلم";
 "Language" = "اللغة";
 "Alert" = "تنبيه";
+"Confirm" = "تأكيد";
 "The application must restart for the changes to take effect." = "يجب على التطبيق أن يعيد التشغيل حتى تظهر التعديلات";
 "Later" = "لاحقاً";
 "Restart App" = "إعادة التشغيل";

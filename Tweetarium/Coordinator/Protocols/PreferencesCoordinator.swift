@@ -10,7 +10,5 @@ import Foundation
 
 protocol PreferencesCoordinator: AnyObject {
     func reset()
-    func presentChangeAlert()
     func presetLogOutAlert()
-    func logout()
 }

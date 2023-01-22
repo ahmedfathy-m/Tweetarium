@@ -30,14 +30,19 @@ struct Preferences: View {
                             window?.overrideUserInterfaceStyle = UserDefaults.standard.isDarkModeEnabled ? .dark : .light
                         }
                     }
-                Picker("Language"~, selection: $language) {
-                    ForEach(Language.allCases) { language in
-                        Text(language.rawValue).tag(language)
+                HStack {
+                    Text("Language"~)
+                    Spacer()
+                    Picker("Language"~, selection: $language) {
+                        ForEach(Language.allCases) { language in
+                            Text(language.rawValue).tag(language)
+                        }
                     }
-                }.pickerStyle(.automatic)
-                    .onChange(of: language) { newValue in
-                        didChangeLanguage(newValue)
-                    }
+                    .pickerStyle(.menu)
+                        .onChange(of: language) { newValue in
+                            didChangeLanguage(newValue)
+                        }
+                }
             }
             
             Section("Account"~) {

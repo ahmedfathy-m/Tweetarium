@@ -23,4 +23,10 @@ extension TimelineViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == (self.viewModel.tweets.value?.count ?? 0) - 1 {
+            viewModel.fetchTimeline(handler: self)
+        }
+    }
 }

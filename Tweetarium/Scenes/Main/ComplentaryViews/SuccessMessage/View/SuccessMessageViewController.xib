@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SuccessMessageViewController" customModule="Tweetarium" customModuleProvider="target">
+            <connections>
+                <outlet property="messageLabel" destination="pft-7G-qeJ" id="tOS-sf-muq"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b04-P9-3q2">
+                    <rect key="frame" x="93" y="49.5" width="228" height="229"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="b04-P9-3q2" secondAttribute="height" multiplier="1:1" id="yiP-C6-f0Z"/>
+                    </constraints>
+                    <imageReference key="image" image="checkmark.diamond.fill" catalog="system" renderingMode="hierarchical">
+                        <hierarchicalColors>
+                            <color red="0.0" green="0.97429376300000003" blue="0.97865206000000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color name="AccentColor"/>
+                            <color name="AccentColor"/>
+                        </hierarchicalColors>
+                    </imageReference>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pft-7G-qeJ">
+                    <rect key="frame" x="200.5" y="282.5" width="13.5" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xt5-hU-f7g">
+                    <rect key="frame" x="20" y="318" width="374" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="Stl-2D-02t"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" title="Okay"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="Okay"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="didPressOkay:" destination="-1" eventType="touchUpInside" id="bsb-kO-yME"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="xt5-hU-f7g" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="216-8t-Ha7"/>
+                <constraint firstAttribute="trailing" secondItem="xt5-hU-f7g" secondAttribute="trailing" constant="20" id="242-iG-kJz"/>
+                <constraint firstItem="pft-7G-qeJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="BFM-FO-Ext"/>
+                <constraint firstItem="b04-P9-3q2" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.55" id="EFX-pg-ymv"/>
+                <constraint firstItem="b04-P9-3q2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="QPw-rc-9PD"/>
+                <constraint firstItem="pft-7G-qeJ" firstAttribute="top" secondItem="b04-P9-3q2" secondAttribute="bottom" constant="5" id="ipG-zy-m6D"/>
+                <constraint firstItem="xt5-hU-f7g" firstAttribute="top" secondItem="pft-7G-qeJ" secondAttribute="bottom" constant="15" id="q2k-AI-ays"/>
+                <constraint firstItem="b04-P9-3q2" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="zki-ti-SXl"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="139" y="70"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="checkmark.diamond.fill" catalog="system" width="128" height="122"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.74901960784313726" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

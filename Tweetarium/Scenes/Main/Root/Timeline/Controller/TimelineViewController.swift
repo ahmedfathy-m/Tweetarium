@@ -32,7 +32,7 @@ class TimelineViewController: AFViewController {
         super.viewDidLoad()
         prepareListOfTweets()
         bindTimeline()
-        viewModel.fetchTimeline(handler: self)
+        viewModel.reloadTimeline(handler: self)
         viewModel.fetchUserDetails(handler: self)
     }
     
@@ -43,7 +43,7 @@ class TimelineViewController: AFViewController {
     // MARK: - IBActions
     @objc func reloadTweets(_ sender: UIRefreshControl) {
         Task {
-            viewModel.fetchTimeline(handler: self)
+            viewModel.reloadTimeline(handler: self)
             sender.endRefreshing()
         }
     }

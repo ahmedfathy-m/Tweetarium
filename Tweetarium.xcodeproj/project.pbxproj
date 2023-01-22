@@ -98,6 +98,12 @@
 		8C766689295C484C0015499B /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C766688295C484C0015499B /* Symbol.swift */; };
 		8C76668B295C49300015499B /* Poll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C76668A295C49300015499B /* Poll.swift */; };
 		8C76668D295C4A300015499B /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C76668C295C4A300015499B /* Coordinates.swift */; };
+		8C813F53297DA9A9009B32C3 /* LogoutAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C813F51297DA9A9009B32C3 /* LogoutAlertViewController.swift */; };
+		8C813F54297DA9A9009B32C3 /* LogoutAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C813F52297DA9A9009B32C3 /* LogoutAlertViewController.xib */; };
+		8C813F56297DAD42009B32C3 /* LogoutAlertCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C813F55297DAD41009B32C3 /* LogoutAlertCoordinator.swift */; };
+		8C813F58297DAD8C009B32C3 /* MainCoordinator+LogoutAlertCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C813F57297DAD8C009B32C3 /* MainCoordinator+LogoutAlertCoordinator.swift */; };
+		8C813F5D297DB1CC009B32C3 /* SuccessMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C813F5B297DB1CC009B32C3 /* SuccessMessageViewController.swift */; };
+		8C813F5E297DB1CC009B32C3 /* SuccessMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C813F5C297DB1CC009B32C3 /* SuccessMessageViewController.xib */; };
 		8CCEF8BD29769ECB001FFC96 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8CCEF8BF29769ECB001FFC96 /* Localizable.strings */; };
 		8CCEF8C32976A107001FFC96 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCEF8C22976A107001FFC96 /* String+Localized.swift */; };
 		8CCEF8C52976A15A001FFC96 /* UIButton+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCEF8C42976A15A001FFC96 /* UIButton+Localized.swift */; };
@@ -219,6 +225,12 @@
 		8C766688295C484C0015499B /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
 		8C76668A295C49300015499B /* Poll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poll.swift; sourceTree = "<group>"; };
 		8C76668C295C4A300015499B /* Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
+		8C813F51297DA9A9009B32C3 /* LogoutAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutAlertViewController.swift; sourceTree = "<group>"; };
+		8C813F52297DA9A9009B32C3 /* LogoutAlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogoutAlertViewController.xib; sourceTree = "<group>"; };
+		8C813F55297DAD41009B32C3 /* LogoutAlertCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutAlertCoordinator.swift; sourceTree = "<group>"; };
+		8C813F57297DAD8C009B32C3 /* MainCoordinator+LogoutAlertCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainCoordinator+LogoutAlertCoordinator.swift"; sourceTree = "<group>"; };
+		8C813F5B297DB1CC009B32C3 /* SuccessMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessMessageViewController.swift; sourceTree = "<group>"; };
+		8C813F5C297DB1CC009B32C3 /* SuccessMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuccessMessageViewController.xib; sourceTree = "<group>"; };
 		8CCEF8BE29769ECB001FFC96 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8CCEF8C02976A0E2001FFC96 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		8CCEF8C12976A0E4001FFC96 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -709,8 +721,10 @@
 		8C76666A295B42960015499B /* ComplentaryViews */ = {
 			isa = PBXGroup;
 			children = (
+				8C813F50297DA96A009B32C3 /* LogoutAlert */,
 				74E38939295E5A21000A4AB5 /* CreateTweetPopup */,
 				8C76666B295B42A70015499B /* ImageViewPopup */,
+				8C813F5F297DB1D2009B32C3 /* SuccessMessage */,
 			);
 			path = ComplentaryViews;
 			sourceTree = "<group>";
@@ -722,6 +736,56 @@
 				8CCEF8D52976E64D001FFC96 /* View */,
 			);
 			path = ImageViewPopup;
+			sourceTree = "<group>";
+		};
+		8C813F50297DA96A009B32C3 /* LogoutAlert */ = {
+			isa = PBXGroup;
+			children = (
+				8C813F59297DADB1009B32C3 /* Controller */,
+				8C813F5A297DADB7009B32C3 /* View */,
+			);
+			path = LogoutAlert;
+			sourceTree = "<group>";
+		};
+		8C813F59297DADB1009B32C3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8C813F51297DA9A9009B32C3 /* LogoutAlertViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8C813F5A297DADB7009B32C3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8C813F52297DA9A9009B32C3 /* LogoutAlertViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8C813F5F297DB1D2009B32C3 /* SuccessMessage */ = {
+			isa = PBXGroup;
+			children = (
+				8C813F60297DB1DA009B32C3 /* Controller */,
+				8C813F61297DB1DF009B32C3 /* View */,
+			);
+			path = SuccessMessage;
+			sourceTree = "<group>";
+		};
+		8C813F60297DB1DA009B32C3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8C813F5B297DB1CC009B32C3 /* SuccessMessageViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8C813F61297DB1DF009B32C3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8C813F5C297DB1CC009B32C3 /* SuccessMessageViewController.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		8CCEF8BA29769E5C001FFC96 /* Localization */ = {
@@ -760,6 +824,7 @@
 				8CCEF8D72977EC13001FFC96 /* TimelineCoordinator.swift */,
 				8CCEF8D92977EC34001FFC96 /* PreferencesCoordinator.swift */,
 				8CCEF8DB2977EC53001FFC96 /* ImageViewCoordinator.swift */,
+				8C813F55297DAD41009B32C3 /* LogoutAlertCoordinator.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -781,6 +846,7 @@
 				8CCEF8E22977ECAE001FFC96 /* MainCoordinator+ImageViewCoordinator.swift */,
 				8CCEF8DE2977EC84001FFC96 /* MainCoordinator+TimelineCoordinator.swift */,
 				8CCEF8E02977EC9A001FFC96 /* MainCoordinator+PreferncesCoordinator.swift */,
+				8C813F57297DAD8C009B32C3 /* MainCoordinator+LogoutAlertCoordinator.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -945,11 +1011,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C813F5E297DB1CC009B32C3 /* SuccessMessageViewController.xib in Resources */,
 				8C5C683A294B5D2600F4C88D /* TweetObjectView.xib in Resources */,
 				74A605AF2932786A00286736 /* LoadingViewController.xib in Resources */,
 				74E3893D295E5A71000A4AB5 /* CreateTweetPopup.xib in Resources */,
 				8C359648294C9CBB0077154E /* TweetMediaEntityView.xib in Resources */,
 				8C766662295B02550015499B /* TwitterUserHeader.xib in Resources */,
+				8C813F54297DA9A9009B32C3 /* LogoutAlertViewController.xib in Resources */,
 				8CCEF8BD29769ECB001FFC96 /* Localizable.strings in Resources */,
 				7421BCDF2948F08000523938 /* TimelineViewController.xib in Resources */,
 				8C76666F295B42CC0015499B /* ImageViewPopup.xib in Resources */,
@@ -1075,13 +1143,16 @@
 				8C766660295B02470015499B /* TwitterUserHeader.swift in Sources */,
 				74C31458297AFDAD00D1A2FB /* Language.swift in Sources */,
 				743FD323293273DA00DFC4DD /* Service.swift in Sources */,
+				8C813F5D297DB1CC009B32C3 /* SuccessMessageViewController.swift in Sources */,
 				743FD30D293236DA00DFC4DD /* LoadingViewController.swift in Sources */,
 				8C68CC7C2974410A0073218F /* TimelineViewController+Binding.swift in Sources */,
 				74C3144F297AE10900D1A2FB /* Credentials.swift in Sources */,
+				8C813F56297DAD42009B32C3 /* LogoutAlertCoordinator.swift in Sources */,
 				74E38934295E5305000A4AB5 /* TweetObjectDelegate.swift in Sources */,
 				8CF1193829756B2B009C2BBA /* TimelineViewModelProtocol.swift in Sources */,
 				8C68CC82297442250073218F /* TimelineViewController+Prefetch.swift in Sources */,
 				8C563C6D295DC6A800540A54 /* Actions.swift in Sources */,
+				8C813F53297DA9A9009B32C3 /* LogoutAlertViewController.swift in Sources */,
 				8C68CC79297433BA0073218F /* CreateTweetPopup+Binding.swift in Sources */,
 				8C2D7A3929488014006D1CEA /* URLRequest.swift in Sources */,
 				8CF1194229758187009C2BBA /* TwitterHeaderProtocol.swift in Sources */,
@@ -1094,6 +1165,7 @@
 				7421BCD82948EF6A00523938 /* AFViewController.swift in Sources */,
 				7421BCF729492FC800523938 /* TimelineViewModel.swift in Sources */,
 				8C766681295C46730015499B /* HashtagObject.swift in Sources */,
+				8C813F58297DAD8C009B32C3 /* MainCoordinator+LogoutAlertCoordinator.swift in Sources */,
 				8C68CC8A297448300073218F /* TweetObjectView+Instntiation.swift in Sources */,
 				8CF1194C2975E0AD009C2BBA /* RootTabbarController+TwitterHeaderDelegate.swift in Sources */,
 				743FD2CE293222A800DFC4DD /* SceneDelegate.swift in Sources */,

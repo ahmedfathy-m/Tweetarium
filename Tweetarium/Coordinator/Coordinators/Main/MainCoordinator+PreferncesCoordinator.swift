@@ -6,24 +6,16 @@
 //
 
 import Foundation
+import QuickSheet
 
 extension MainCoordinator: PreferencesCoordinator {
     func reset() {
         self.parentCoordinator?.start()
     }
     
-    func presentChangeAlert() {
-        let alert = factory.createWarningAlert(coordinator: self)
-        navigationController.present(alert, animated: true)
-    }
-    
     func presetLogOutAlert() {
         let alert = factory.createLogOutAlert(coordinator: self)
-        navigationController.present(alert, animated: true)
-    }
-    
-    func logout() {
-        UserDefaults.standard.removeAll()
-        self.reset()
+        let options = QuickSheetOptions(fraction: 0.35, isExpandable: false, isScrollable: false, cornerRadius: 20)
+        navigationController.presentQuickSheet(alert, options: options)
     }
 }

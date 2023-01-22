@@ -12,9 +12,9 @@ enum Statuses {
     var baseURL: String { return "https://api.twitter.com/1.1" }
     
     // Timelines
-    case home
-    case mentions
-    case profile
+    case home(maxID: Int? = nil)
+    case mentions(maxID: Int? = nil)
+    case profile(maxID: Int? = nil)
     
     // Manage Status
     case create(text: String, inReplyToTweetID: Int64?)
@@ -46,9 +46,12 @@ extension Statuses: NetworkingRoute {
     var defaultQueryParameters: [String : String] {
         var parameters = [String: String]()
         switch self {
-        case .home, .mentions, .profile:
+        case .home(let maxID), .mentions(let maxID), .profile(let maxID):
             parameters["tweet_mode"] = "extended"
-            parameters["count"] = "60"
+            parameters["count"] = "10"
+            if let maxID = maxID {
+                parameters["max_id"] = "\(maxID)"
+            }
         case .create(let text, let statusID):
             parameters["status"] = text
             if let statusID = statusID {
