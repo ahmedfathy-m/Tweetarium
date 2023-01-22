@@ -9,7 +9,5 @@ target 'Tweetarium' do
 pod 'CryptoSwift'
 pod 'Kingfisher'
 pod 'QuickSheet'
-pod 'Alamofire'
-pod 'Eureka'
 
 end
